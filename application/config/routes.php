@@ -53,4 +53,5 @@ $route['default_controller'] = 'Kuisioner';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 $route['form'] = 'Kuisioner/form';
+$route['login'] = 'Autentikasi';
 $route['sukses'] = 'Kuisioner/sukses_form';

@@ -5,7 +5,7 @@ class Kuisioner extends CI_Controller{
 	public function index(){
 		$data['pageTitle'] = "SiPuas | Responden Kuisioner Kepuasan Masyarakat";
 		if ($this->form_validation->run() == FALSE){
-		
+			
 		}else{
 			$this->load->model('MKuisioner');
 			$this->MKuisioner->setDataResponden();
