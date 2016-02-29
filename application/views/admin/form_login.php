@@ -1,5 +1,5 @@
 <div class= "container">
-	<form class="form-login" method="POST" action="<?php echo site_url("control_autentikasi/login");?>" role="form">
+	<form class="form-login" method="POST" action="<?php echo site_url("autentikasi/login");?>" role="form">
 		<input type="hidden" name="location" value="<?php if(isset($location)) echo htmlspecialchars($location); ?>" readonly>
 		<label for="username">Username</label>
 		<input type="text" name="username" value="<?php echo set_value('username')?>" class="form-control" placeholder="Username" required autofocus />

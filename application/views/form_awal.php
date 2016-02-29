@@ -2,23 +2,17 @@
 	<form class="form-responden form-horizontal" method="POST" action="<?php echo base_url("");?>" role="form">
 		<h3>Data Masyarakat (Responden)</h3><br>
 		<div class="form-group">
-			<label class="control-label col-sm-3" for="nama">Nama Responden*</label>
-			<div class="col-sm-9">
-				<input type="text" name="nama" value="<?php echo set_value('nama')?>" class="form-control" placeholder="Isikan nama responden" required autofocus />
-			</div>
-		</div>
-		<div class="form-group">
 			<label class="control-label col-sm-3" for="umur">Umur Responden*</label>
 			<div class="col-sm-9">
-				<input type="text" name="umur" value="<?php echo set_value('umur')?>" class="form-control" placeholder="Isikan umur responden" required />
+				<input type="text" name="umur" value="<?php echo set_value('umur')?>" class="form-control" placeholder="Isikan umur responden" required autofocus />
 			</div>
 		</div>
 		<div class="form-group">
 			<label class="control-label col-sm-3">Jenis Kelamin*</label>
 			<div class="col-sm-9">
 				<div class="radio">
-					<label><input type="radio" name="jenkel" value="0" <?php echo set_radio('status', '0', TRUE); ?> required> Laki-Laki</label>
-					<label><input type="radio" name="jenkel" value="1" <?php echo set_radio('status', '1'); ?> required> Perempuan</label>
+					<label><input type="radio" name="jenkel" value="0" <?php echo set_radio('jenkel', '0', TRUE); ?> required> Laki-Laki</label>
+					<label><input type="radio" name="jenkel" value="1" <?php echo set_radio('jenkel', '1'); ?> required> Perempuan</label>
 				</div>
 			</div>
 		</div>

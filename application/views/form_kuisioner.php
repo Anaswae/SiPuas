@@ -1,11 +1,10 @@
 <div class="container">
 	<div class="container-page">
-		<div class="row">
+		<div class="row form-kuisioner">
 			<h2>Formulir Kuisioner Responden Tentang Pelayanan Publik</h2>
 			<hr>
-			<form class="form-kuisioner" method="POST" action="<?php echo base_url("form");?>" role="form">
+			<form method="POST" action="<?php echo base_url("form");?>" role="form">
 				<div class="col-md-6">	
-					<input type="hidden" name="nama" value="<?php echo (!empty($responden['nama']))?$responden['nama']:set_value('nama') ?>">
 					<input type="hidden" name="umur" value="<?php echo (!empty($responden['umur']))?$responden['umur']:set_value('umur') ?>">
 					<input type="hidden" name="jenkel" value="<?php echo (!empty($responden['jenkel']))?$responden['jenkel']:set_value('jenkel') ?>">
 					<input type="hidden" name="pendidikan" value="<?php echo (!empty($responden['pendidikan']))?$responden['pendidikan']:set_value('pendidikan') ?>">
@@ -142,7 +141,7 @@
 						<table class="table-kuisioner" border="0">
 							<tr>
 								<td><label><input type="radio" name="kepastianJadwal" value="1" <?php echo set_radio('kepastianJadwal', '1'); ?> required> Selalu Tidak Tepat</label></td>
-								<td></td>
+								<td><label><input type="radio" name="kepastianJadwal" value="2" <?php echo set_radio('kepastianJadwal', '2'); ?> required> Kadang-Kadang Tepat</label></td>
 							</tr>
 							<tr>
 								<td><label><input type="radio" name="kepastianJadwal" value="3" <?php echo set_radio('kepastianJadwal', '3'); ?> required> Banyak Tepatnya</label></td>
@@ -176,11 +175,6 @@
 							echo "<div class= \"alert alert-danger\"><ul>";
 								if(validation_errors() == true) echo validation_errors('<li>', '</li>');
 								if(! empty( $error)) echo $error;
-							echo "</ul></div>";
-						}
-						if (! empty ( $submitSukses )) {
-							echo "<div class= \"alert alert-success\"><ul>";
-								echo "<li>".$submitSukses."</li>\n";
 							echo "</ul></div>";
 						}
 					?>

@@ -24,10 +24,17 @@ class Kuisioner extends CI_Controller{
 			if ($this->form_validation->run() == FALSE){
 				
 			}else{
-				
+				$this->load->model('MKuisioner');
+				$data['error'] = $this->MKuisioner->setDataKuisioner();
+				if(empty($data['error']))
+					header("Location:".base_url(""));
 			}
 			
 			$this->load->template("form_kuisioner", $data);
 		}
+	}
+	
+	public function sukses_page(){
+		
 	}
 }

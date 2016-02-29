@@ -4,11 +4,29 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $config = array(
 		'Kuisioner/index' => array(
 				array(
-						'field' => 'nama',
-						'label' => 'Nama',
-						'rules' => 'trim|required',
-						'errors' => array('required' => "Tolong isikan %s Anda.")
+						'field' => 'umur',
+						'label' => 'Umur',
+						'rules' => 'trim|required|numeric',
+						'errors' => array('required' => "Tolong isikan %s Anda.",
+								'numeric' => "Umur hanya boleh berisi angka."
+						)
 				),
+				array(
+						'field' => 'pendidikan',
+						'label' => 'Pendidikan',
+						'rules' => 'required',
+						'errors' => array('required' => "Tolong isikan %s Anda."
+						)
+				),
+				array(
+						'field' => 'pekerjaan',
+						'label' => 'Pekerjaan',
+						'rules' => 'required',
+						'errors' => array('required' => "Tolong isikan %s Anda."
+						)
+				)
+		),
+		'Kuisioner/form' => array(
 				array(
 						'field' => 'umur',
 						'label' => 'Umur',
@@ -32,58 +50,7 @@ $config = array(
 						)
 				)
 		),
-		'Kuisioner/index' => array(
-				
-		),
-		'control_pendaftaran/pendataan' => array(
-				array(
-						'field' => 'nim',
-						'label' => 'NIM',
-						'rules' => 'trim|required|exact_length[14]|is_unique[tbl_mahasiswa.nim]|is_natural',
-						'errors' => array(
-								'required' => "Tolong isikan %s anda.",
-								'exact_length' => "%s harus berisi %s karakter.",
-								'is_unique' => "Maaf, %s Sudah terdaftar.",
-								'is_natural' => "%s hanya boleh berisi angka"
-						)
-				),
-				array(
-						'field' => 'name',
-						'label' => 'Nama',
-						'rules' => 'trim|required|alpha_numeric_spaces',
-						'errors' => array(
-								'required' => "Tolong isikan %s anda.",
-								'alpha_numeric_spaces' => "%s hanya diizinkan berupa alphanumerik."
-						)
-				),
-				array(
-						'field' => 'phone',
-						'label' => 'Nomer Telpon',
-						'rules' => 'trim|required|numeric',
-						'errors' => array(
-								'required' => "Tolong isikan %s anda.",
-								'numeric' => "%s hanya diizinkan berupa angka."
-						)
-				),
-				array(
-						'field' => 'email',
-						'label' => 'Email',
-						'rules' => 'trim|valid_email',
-						'errors' => array(
-								'valid_email' => "%s Anda tidak valid."
-						)
-				),
-				array(
-						'field' => 'nobri',
-						'label' => 'No. BRI',
-						'rules' => 'trim|exact_length[16]|is_natural',
-						'errors' => array(
-								'exact_length' => "Panjang %s harus 16 karakter.",
-								'is_natural' => "%s hanya boleh berisi angka."
-						)
-				)
-		),
-		'control_autentikasi/login' => array(
+		'Autentikasi/login' => array(
 				array(
 						'field' => 'username',
 						'label' => 'Username',

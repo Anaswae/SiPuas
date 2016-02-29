@@ -2455,6 +2455,11 @@ _:-ms-fullscreen.input-lg,
 :root input[type="month"].input-lg {
   line-height: 1.33;
 }
+.form-login{
+	max-width: 400px;
+	padding: 15px;
+	margin: 0px auto;
+}
 .form-responden{
 	max-width: 800px;
 	padding: 15px;
@@ -2464,8 +2469,12 @@ _:-ms-fullscreen.input-lg,
 	border-radius: 25px;
 }
 .form-kuisioner{	
+	max-width: 1024px;
 	padding: 15px;
 	margin: 0px auto;
+	border: 2px solid #a1a1a1;
+	background: #ffffff;
+	border-radius: 25px;
 }
 .form-group {
   margin-bottom: 15px;
