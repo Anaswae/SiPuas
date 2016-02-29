@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Autentikasi extends CI_Controller{
+class Administrasi extends CI_Controller{
 	public function index(){
 		if(!$this->load->cek_sesi()) exit;
 	

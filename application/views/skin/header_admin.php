@@ -48,13 +48,13 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">Daftar BRI FSM Undip</a>
+				<a class="navbar-brand" href="#">SiPuas</a>
 			</div>
 			<div id="navbar" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="<?php echo site_url("control_autentikasi/ubah_password")?>">Ubah Password</a></li>
-					<li><a href="<?php echo site_url("control_autentikasi/ubah_email")?>">Ubah Email</a></li>
-					<li><a href="<?php echo site_url("control_autentikasi/logout")?>">Keluar</a></li>
+					<li><a href="<?php echo site_url("autentikasi/ubah_password")?>">Ubah Password</a></li>
+					<li><a href="<?php echo site_url("autentikasi/ubah_email")?>">Ubah Email</a></li>
+					<li><a href="<?php echo site_url("autentikasi/logout")?>">Keluar</a></li>
 				</ul>
 			</div>
 		</div>

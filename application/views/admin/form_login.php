@@ -6,7 +6,6 @@
 		<label for="password">Password</label>
 		<input type="password" name="password" class="form-control" placeholder="Password" required /><br>
 		<button class="btn btn-lg btn-primary btn-block" type="submit">Login</button><br>
-		<a href="<?php echo site_url("control_autentikasi/request_lupa_password");?>">Lupa Password?</a>
 		<?php
 		$validasi = validation_errors();
 		if (!empty($validasi) || !empty($errors)) {
