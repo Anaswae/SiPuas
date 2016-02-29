@@ -178,7 +178,7 @@
 							echo "</ul></div>";
 						}
 					?>
-						&copy;UP2TI Powered By <a href="mailto:saptanto.sindu@gmail.com?Subject=DreamSpark%20FSM" target="_top">Ketampanan</a>
+						&copy;SiPuas Powered By <a href="mailto:saptanto.sindu@gmail.com?Subject=SiPuas" target="_top">Ketampanan</a>
 				</div>
 			</form>
 		</div>
