@@ -67,4 +67,119 @@ class MKuisioner extends CI_Model{
 			return "Data gagal ditambahkan : ".$this->db->error;
 		}
 	}
+	
+	public function getDataKuisioner(){
+		$query = $this->db->get('tbl_kuisioner');
+		$indeks = 0;
+		$result = array();
+		
+		foreach ($query->result_array() as $row){
+			$result[$indeks++] = $row;
+		}
+		
+		return $result;
+	}
+	
+	public function getJumlahResponden(){
+		$listKuisioner = $this->getDataKuisioner();
+		
+		return $jumlahResponden = count($listKuisioner);
+	}
+	
+	public function hitungNilaiUnsurPelayanan(){
+		$listKuisioner = $this->getDataKuisioner();
+		
+		$hasil = array(
+				'prosedur' => 0,
+				'persyaratan' => 0,
+				'kejelasan' => 0,
+				'kedisiplinan' => 0,
+				'tanggungjawab' => 0,
+				'kemampuan' => 0,
+				'kecepatan' => 0,
+				'keadilan' => 0,
+				'kesopanan' => 0,
+				'kewajaranBiaya' => 0,
+				'kepastianBiaya' => 0,
+				'kepastianJadwal' => 0,
+				'kenyamanan' => 0,
+				'keamanan' => 0
+		);
+		
+		$jumlahResponden = count($listKuisioner);
+		
+		foreach ($listKuisioner as $kuisioner){
+			foreach ($kuisioner as $pelayanan => $nilai){
+				if(array_key_exists($pelayanan, $hasil)){
+					$hasil[$pelayanan] += $nilai;
+				}
+			}
+		}
+		
+		foreach ($hasil as $unitPelayanan => $nilai){
+			$hasil[$unitPelayanan] = $nilai/$jumlahResponden;
+		}
+		
+		return $hasil;
+	}
+	
+	public function hitungNilaiIKM() {
+		$nilaiUnsurPelayanan = $this->hitungNilaiUnsurPelayanan();
+		$result = 0;
+		
+		foreach ($nilaiUnsurPelayanan as $unsurPelayanan){
+			$result += $unsurPelayanan*0.071;
+		}
+		
+		return $result;
+	}
+	
+	public function simpulanIKM(){
+		$nilaiIKM = $this->hitungNilaiIKM();
+		$nilaiIKM = $nilaiIKM * 25;
+		
+		if($nilaiIKM >= 25 && $nilaiIKM <= 43.75){
+			$result['mutu'] = 'D';
+			$result['kinerja'] = 'Tidak Baik';
+		}else if($nilaiIKM > 43.75 && $nilaiIKM <= 62.5){
+			$result['mutu'] = 'C';
+			$result['kinerja'] = 'Kurang Baik';
+		}else if($nilaiIKM > 62.5 && $nilaiIKM <= 81.25){
+			$result['mutu'] = 'B';
+			$result['kinerja'] = 'Baik';
+		}else if($nilaiIKM > 81.25 && $nilaiIKM <= 100){
+			$result['mutu'] = 'A';
+			$result['kinerja'] = 'Sangat Baik';
+		}
+		$result['konversi'] = $nilaiIKM;
+		
+		return $result;
+	}
+	
+	public function getGraphData(){
+		$nilaiUnsurPelayanan = $this->hitungNilaiUnsurPelayanan();
+		$result = array();
+		$konversi = array(
+				'prosedur' => 'Prosedur Pelayanan',
+				'persyaratan' => 'Persyaratan Pelayanan',
+				'kejelasan' => 'Kejelasan Petugas Pelayanan',
+				'kedisiplinan' => 'Kedisiplinan Petugas Pelayanan',
+				'tanggungjawab' => 'Tanggung Jawab Petugas Pelayanan',
+				'kemampuan' => 'Kemampuan Petugas Pelayanan',
+				'kecepatan' => 'Kecepatan Pelayanan',
+				'keadilan' => 'Keadilan Mendapatkan Pelayanan',
+				'kesopanan' => 'Kesopanan dan Keramahan Petugas',
+				'kewajaranBiaya' => 'Kewajaran Biaya Pelayanan',
+				'kepastianBiaya' => 'Kepastian Biaya Pelayanan',
+				'kepastianJadwal' => 'Kepastian Jadwal Pelayanan',
+				'kenyamanan' => 'Kenyamanan Lingkungan',
+				'keamanan' => 'Keamanan Pelayanan'
+		);
+		
+		foreach ($nilaiUnsurPelayanan as $unsurPelayanan => $nilai){
+			$result[$konversi[$unsurPelayanan]] = $nilai;
+		}
+		
+		return $result;
+	}
 }

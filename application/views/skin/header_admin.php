@@ -1,10 +1,10 @@
-<html lang="en">
+<html>
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-<meta name="description" content="DreamSpark FSM UNDIP">
+<meta name="description" content="SiPuas">
 <meta name="author" content="Saptanto Sindu K U">
 <!-- <link rel="icon" href="../../favicon.ico">  -->
 
@@ -38,6 +38,7 @@
 			'site_url' => site_url()
 		))?>;
 	</script>
+	
 	<nav class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container-fluid">
 			<div class="navbar-header">
