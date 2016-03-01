@@ -5,7 +5,7 @@
 			
 			<h4 align="left">Selamat Datang <?php echo $this->session->adminName." (".$this->session->sessionEmail.")";?></h4>
 			<div class="row placeholders">
-			<h3 align="left">Asd1</h3>
+			<h3 align="left">HALO</h3>
 			</div>	
 			<div class="row placeholders">
 			<h3 align="left">Asd2</h3>

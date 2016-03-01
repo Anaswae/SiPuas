@@ -5,13 +5,13 @@
 	src="<?php echo base_url('/assets/js/jquery.min.js'); ?>"></script>
 	
 <script type='text/javascript'
+	src="<?php echo base_url('/assets/js/dataTables.bootstrap.js'); ?>"></script>
+<script type='text/javascript'
 	src="<?php echo base_url('/assets/js/jquery.dataTables.min.js'); ?>"></script>
 	
 <script type='text/javascript'
 	src="<?php echo base_url('/assets/js/bootstrap.js'); ?>"></script>
 
-<script type='text/javascript'
-	src="<?php echo base_url('/assets/js/dataTables.bootstrap.js'); ?>"></script>
 	
 <?php if (empty($useSimple)){?>
 <script src="<?php echo base_url('/assets/js/msdnaa.js'); ?>"></script>
