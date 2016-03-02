@@ -5,13 +5,26 @@
 			
 			<h4 align="left">Selamat Datang <?php echo $this->session->adminName." (".$this->session->sessionEmail.")";?></h4>
 			<div class="row placeholders">
+<<<<<<< HEAD
 			<h3 align="left">HALO</h3>
+=======
+				<h3 align="left">Grafik Kualitas Pelayanan</h3>
+				
+				<canvas id="respondenChart" width="400" height="120"></canvas>
+				
+				<div class="col-xs-6 col-sm-6 placeholder">
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+						    <h3 class="panel-title">Simpulan Kuisioner dari <?php echo $jumlahResponden;?> Responden</h3>
+						</div>
+						<div class="panel-body">
+						    Kualitas Pelayanan <?php echo $simpulan['kinerja']?><br>
+						    Dengan Nilai <?php echo $simpulan['konversi']." (".$simpulan['mutu'].")";?>
+						</div>
+					</div>
+				</div>
+>>>>>>> origin/master
 			</div>	
-			<div class="row placeholders">
-			<h3 align="left">Asd2</h3>
-			
-			
-			</div>		
 		</div>
 	</div>
 </div>

@@ -13,6 +13,10 @@ class Administrasi extends CI_Controller{
 	
 		$data['pageTitle'] = "Dashboard Administrator";
 		$data['activePage'] = "dashboard";
+		
+		$this->load->model('mkuisioner');
+		$data['simpulan'] = $this->mkuisioner->simpulanIKM();
+		$data['jumlahResponden'] = $this->mkuisioner->getJumlahResponden();
 		$this->load->template_admin("dashboard", $data, true);
 	}
 	
