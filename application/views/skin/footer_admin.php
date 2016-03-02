@@ -17,12 +17,6 @@
 	src="<?php echo base_url('/assets/js/Chart.js');?>"></script>
 	
 <script type='text/javascript'
-<<<<<<< HEAD
-=======
-	src="<?php echo base_url('/assets/js/Chart.js');?>"></script>
-	
-<script type='text/javascript'
->>>>>>> origin/master
 	src="<?php echo base_url('/assets/js/chartInit.js');?>"></script>
 
 
