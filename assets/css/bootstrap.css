@@ -2468,6 +2468,14 @@ _:-ms-fullscreen.input-lg,
 	background: #ffffff;
 	border-radius: 25px;
 }
+div.form-responden{
+	margin-top: 30px
+}
+.form-responden > .panel {
+	margin: 100px;
+	padding-bottom: 10px;
+	font-size: 20px;
+}
 .form-kuisioner{	
 	max-width: 1024px;
 	padding: 15px;

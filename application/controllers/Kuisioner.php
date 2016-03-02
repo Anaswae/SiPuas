@@ -27,7 +27,7 @@ class Kuisioner extends CI_Controller{
 				$this->load->model('MKuisioner');
 				$data['error'] = $this->MKuisioner->setDataKuisioner();
 				if(empty($data['error']))
-					header("Location:".base_url(""));
+					header("Location:".base_url("kuisioner/sukses_page"));
 			}
 			
 			$this->load->template("form_kuisioner", $data);
@@ -35,6 +35,7 @@ class Kuisioner extends CI_Controller{
 	}
 	
 	public function sukses_page(){
-		
+		$data['pageTitle'] = "SiPuas | Kuisioner Kepuasan Masyarakat";
+		$this->load->template("notif_sukses", $data);
 	}
 }
