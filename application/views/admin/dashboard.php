@@ -6,8 +6,11 @@
 			<h4 align="left">Selamat Datang <?php echo $this->session->adminName." (".$this->session->sessionEmail.")";?></h4>
 			<div class="row placeholders">
 <<<<<<< HEAD
+<<<<<<< HEAD
 			<h3 align="left">HALO</h3>
 =======
+=======
+>>>>>>> origin/master
 				<h3 align="left">Grafik Kualitas Pelayanan</h3>
 				
 				<canvas id="respondenChart" width="400" height="120"></canvas>
@@ -23,6 +26,9 @@
 						</div>
 					</div>
 				</div>
+<<<<<<< HEAD
+>>>>>>> origin/master
+=======
 >>>>>>> origin/master
 			</div>	
 		</div>
