@@ -1,5 +1,5 @@
 <?php
-function do_export_xlsx($JSONResult) {
+function do_export_xlsx($listRespon) {
 	$CI =& get_instance();
 	
 	// load the excel library
@@ -7,27 +7,34 @@ function do_export_xlsx($JSONResult) {
 	
 	define('IDX_COL_HOME', 2);	// Kolom dimulai pada kolom ke 3 (index 2)
 	define('IDX_ROW_START', 1); // Dimulai dari baris 1
-	define('TABLE_COLS', 11);	// Tabel ada 8 kolom
+	define('TABLE_COLS', 19);	// Tabel ada 8 kolom
 	
-	$jmlHasil	= intval($JSONResult['list_data']['total']);
-	$jmlDapat = intval($JSONResult['list_data']['dapat']);
-	$jmlBelum = intval($JSONResult['list_data']['belum']);
+	$jmlHasil = count($listRespon);
 	
-	$exportFileName = "Data_kartu_BRI.xlsx";
+	$exportFileName = "Data Responden Kuisioner.xlsx";
 	$columnWidths = array(
 			2,	// [A] Padding
 			2,	// [B] Padding
-			18,	// [C] Kolom NIM
-			25,	// [D] Kolom Lokasi
-			11,	// [E] Kolom No. Handphone
-			11,	// [F] Kolom Status
-			18, // [G] Kolom MAC Address | Radio
-			18,	// [H] Kolom Controller | Name
-			18,	// [I] Kolom Controller | IP
-			15,	// [J] Kolom SN
-			10, // [K] Kolom Type
-			8, // [L] Kolom Client Count | 2,4Ghz
-			8	// [M] Kolom Client Count | 5GHz
+			18,	// [C] Kolom Nomer
+			8,	// [D] Kolom usia
+			14,	// [E] Kolom jenis kelamin
+			12,	// [F] Kolom pendidikan
+			20, // [G] Kolom pekerjaan
+			12,	// [H] Kolom kuisioner 1
+			12,	// [J] Kolom kuisioner 3
+			12,	// [I] Kolom kuisioner 2
+			12, // [K] Kolom kuisioner 4
+			12, // [K] Kolom kuisioner 5
+			12, // [K] Kolom kuisioner 6
+			12, // [K] Kolom kuisioner 7
+			12, // [K] Kolom kuisioner 8
+			12, // [K] Kolom kuisioner 9
+			12, // [K] Kolom kuisioner 10
+			12, // [K] Kolom kuisioner 11
+			12, // [K] Kolom kuisioner 12
+			12, // [K] Kolom kuisioner 13
+			12, // [K] Kolom kuisioner 14
+			
 	);
 	$styleHeader = array(
 			'alignment' => array(
@@ -69,7 +76,7 @@ function do_export_xlsx($JSONResult) {
 	try {
 		$objPHPExcel = new PHPExcel();
 		$worksheetReport = $objPHPExcel->getActiveSheet();
-		$worksheetReport->setTitle('Data Kartu BRI FSM Undip ');
+		$worksheetReport->setTitle('Data Hasil Responden');
 		
 		// Set default alignment ke kiri atas...
 		$objPHPExcel->getDefaultStyle()
@@ -86,7 +93,7 @@ function do_export_xlsx($JSONResult) {
 		$worksheetReport->mergeCellsByColumnAndRow(
 				IDX_COL_HOME, IDX_ROW_START,
 				IDX_COL_HOME+TABLE_COLS-1, IDX_ROW_START+1)
-				->setCellValueByColumnAndRow(IDX_COL_HOME, IDX_ROW_START, "Data Kartu BRI FSM Undip");
+				->setCellValueByColumnAndRow(IDX_COL_HOME, IDX_ROW_START, "Data Hasil Responden Kuisioner Kepuasan Masyarakat");
 		
 		$worksheetReport->getStyleByColumnAndRow(IDX_COL_HOME, IDX_ROW_START)
 			->applyFromArray($styleHeader); // Set style
@@ -100,265 +107,111 @@ function do_export_xlsx($JSONResult) {
 				IDX_COL_HOME, $rowBaseTable-1,
 				IDX_COL_HOME+TABLE_COLS-1, $rowBaseTable-1)
 				->setCellValueByColumnAndRow(IDX_COL_HOME, $rowBaseTable-1,
-						"Total: ".$jmlHasil." Mahasiswa (".$jmlDapat." sudah dapat, ".$jmlBelum." belum dapat)");
+						"Total: ".$jmlHasil);
 		
 		$worksheetReport->mergeCellsByColumnAndRow(
 				IDX_COL_HOME, $rowBaseTable,
 				IDX_COL_HOME+TABLE_COLS-1, $rowBaseTable)
 				->setCellValueByColumnAndRow(IDX_COL_HOME, $rowBaseTable,
-						$serverAddr.' | '.date("d m Y, H:i"));
+						date("d m Y, H:i"));
 		
 		// Baris header tabel
 		$worksheetReport->mergeCellsByColumnAndRow(
 				IDX_COL_HOME, $rowBaseTable+1,
 				IDX_COL_HOME, $rowBaseTable+2)
-				->setCellValueByColumnAndRow(IDX_COL_HOME,$rowBaseTable+1,'AP Name');
+				->setCellValueByColumnAndRow(IDX_COL_HOME,$rowBaseTable+1,'Nomor');
 		$worksheetReport->mergeCellsByColumnAndRow(
 				IDX_COL_HOME+1, $rowBaseTable+1,
 				IDX_COL_HOME+1, $rowBaseTable+2)
-				->setCellValueByColumnAndRow(IDX_COL_HOME+1,$rowBaseTable+1,'Lokasi');
+				->setCellValueByColumnAndRow(IDX_COL_HOME+1,$rowBaseTable+1,'Umur');
 		
 		$worksheetReport->mergeCellsByColumnAndRow(
 				IDX_COL_HOME+2, $rowBaseTable+1,
 				IDX_COL_HOME+2, $rowBaseTable+2)
-				->setCellValueByColumnAndRow(IDX_COL_HOME+2,$rowBaseTable+1,'IP Address');
-		
-		$worksheetReport->mergeCellsByColumnAndRow(
-				IDX_COL_HOME+3, $rowBaseTable+1,
-				IDX_COL_HOME+4, $rowBaseTable+1)
-				->setCellValueByColumnAndRow(IDX_COL_HOME+3,$rowBaseTable+1,'MAC Addr');
-		$worksheetReport->setCellValueByColumnAndRow(
-				IDX_COL_HOME+3,$rowBaseTable+2, 'Eth');
-		$worksheetReport->setCellValueByColumnAndRow(
-				IDX_COL_HOME+4,$rowBaseTable+2, 'Radio');
-		
-		$worksheetReport->mergeCellsByColumnAndRow(
-				IDX_COL_HOME+5, $rowBaseTable+1,
-				IDX_COL_HOME+6, $rowBaseTable+1)
-				->setCellValueByColumnAndRow(IDX_COL_HOME+5,$rowBaseTable+1,'Controller');
-		$worksheetReport->setCellValueByColumnAndRow(
-				IDX_COL_HOME+5,$rowBaseTable+2, 'Name');
-		$worksheetReport->setCellValueByColumnAndRow(
-				IDX_COL_HOME+6,$rowBaseTable+2, 'IP');
-		
-		$worksheetReport->mergeCellsByColumnAndRow(
-				IDX_COL_HOME+7, $rowBaseTable+1,
-				IDX_COL_HOME+7, $rowBaseTable+2)
-				->setCellValueByColumnAndRow(IDX_COL_HOME+7,$rowBaseTable+1,'SN');
-		$worksheetReport->mergeCellsByColumnAndRow(
-				IDX_COL_HOME+8, $rowBaseTable+1,
-				IDX_COL_HOME+8, $rowBaseTable+2)
-				->setCellValueByColumnAndRow(IDX_COL_HOME+8,$rowBaseTable+1,'Type');
-		
-		$worksheetReport->mergeCellsByColumnAndRow(
-				IDX_COL_HOME+9, $rowBaseTable+1,
-				IDX_COL_HOME+10, $rowBaseTable+1)
-				->setCellValueByColumnAndRow(IDX_COL_HOME+9,$rowBaseTable+1,'Client Count');
-		$worksheetReport->setCellValueByColumnAndRow(
-				IDX_COL_HOME+9,$rowBaseTable+2, '2,4GHz');
-		$worksheetReport->setCellValueByColumnAndRow(
-				IDX_COL_HOME+10,$rowBaseTable+2, '5GHz');
-		
-		// Set border header
-		$worksheetReport->getStyleByColumnAndRow(
-				IDX_COL_HOME,$rowBaseTable+1,
-				IDX_COL_HOME+TABLE_COLS-1,$rowBaseTable+2)
-				->applyFromArray($styleHeader)
-				->applyFromArray($styleBorderAll)
-				->applyFromArray($styleGrayBg);
-		
-		// Isi body tabel
-		$counterItem	= 0;
-		$currentRow		= $rowBaseTable + 3;
-		foreach ($JSONResult['list_data']['data'] as $itemResult) {
-			$counterItem++;
-			$worksheetReport->setCellValueByColumnAndRow(
-					IDX_COL_HOME, $currentRow, $itemResult->name);
-			$worksheetReport->setCellValueByColumnAndRow(
-					IDX_COL_HOME+1, $currentRow, $itemResult->location);
-			$worksheetReport->getStyleByColumnAndRow(IDX_COL_HOME+1, $currentRow)
-				->getAlignment()->setWrapText(true);
-			
-			$worksheetReport->setCellValueByColumnAndRow(
-					IDX_COL_HOME+2, $currentRow, $itemResult->ipAddress);
-			$worksheetReport->setCellValueByColumnAndRow(
-					IDX_COL_HOME+3, $currentRow, $itemResult->ethernetMac);
-			$worksheetReport->setCellValueByColumnAndRow(
-					IDX_COL_HOME+4, $currentRow, $itemResult->macAddress);
-			$worksheetReport->setCellValueByColumnAndRow(
-					IDX_COL_HOME+5, $currentRow, $itemResult->controllerName);
-			$worksheetReport->setCellValueByColumnAndRow(
-					IDX_COL_HOME+6, $currentRow, $itemResult->controllerIpAddress);
-			$worksheetReport->setCellValueByColumnAndRow(
-					IDX_COL_HOME+7, $currentRow, $itemResult->serialNumber);
-			$worksheetReport->setCellValueByColumnAndRow(
-					IDX_COL_HOME+8, $currentRow, $itemResult->type);
-			$worksheetReport->setCellValueByColumnAndRow(
-					IDX_COL_HOME+9, $currentRow, $itemResult->clientCount_2_4GHz);
-			$worksheetReport->setCellValueByColumnAndRow(
-					IDX_COL_HOME+10, $currentRow, $itemResult->clientCount_5GHz);
-			if (strtolower($itemResult->controllerName) == "down") {
-				$worksheetReport->getStyleByColumnAndRow(
-						IDX_COL_HOME,$currentRow,
-						IDX_COL_HOME+TABLE_COLS-1,$currentRow)
-						->applyFromArray($styleAPDown);
-			}
-			$currentRow++;
-		}
-		// Set border untuk seluruh cell
-		$worksheetReport->getStyleByColumnAndRow(
-				IDX_COL_HOME,$rowBaseTable+1,
-				IDX_COL_HOME+TABLE_COLS-1,$currentRow-1)
-				->applyFromArray($styleBorderAll);
-		
-		header('Content-Type: application/vnd.ms-excel'); //mime type
-		header('Content-Disposition: attachment;filename="'.$exportFileName.'"'); //tell browser what's the file name
-		header('Cache-Control: max-age=0'); //no cache
-		
-		//save it to Excel5 format (excel 2003 .XLS file), change this to 'Excel2007' (and adjust the filename extension, also the header mime type)
-		//if you want to save it as .XLSX Excel 2007 format
-		$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
-		//force user to download the Excel file without writing it to server's HD
-		$objWriter->save('php://output');
-	} catch (Exception $e) {
-		die('[PHPExcel error] '.$e->getMessage()."<br> Trace:<br>".$e->getTraceAsString());
-	}
-	
-}
-
-function do_autelan_export_xlsx($JSONResult, $serverId, $serverAddr, $queryField, $queryText) {
-	$CI =& get_instance();
-
-	// load the excel library
-	$CI->load->library('excel');
-
-	define('IDX_COL_HOME', 2);	// Kolom dimulai pada kolom ke 3 (index 2)
-	define('IDX_ROW_START', 1); // Dimulai dari baris 1
-	define('TABLE_COLS', 6);	// Tabel ada 8 kolom
-
-	$jmlHasil	= intval($JSONResult['list_data']['total']);
-	$jmlDown	= intval($JSONResult['list_data']['down']);
-	$exportFileName = "hasil-pencarian.xlsx";
-	$columnWidths = array(
-			2,	// [A] Padding
-			2,	// [B] Padding
-			18,	// [C] Kolom Loc ID
-			45,	// [D] Kolom AP Name
-			50,	// [E] Kolom Lokasi
-			15,	// [F] Kolom IP Address
-			18, // [G] Kolom MAC Address
-			18	// [H] Kolom Status
-	);
-	$styleHeader = array(
-			'alignment' => array(
-					'horizontal'	=> PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
-					'vertical'		=> PHPExcel_Style_Alignment::VERTICAL_CENTER
-			),
-			'font'  => array(
-					'bold'  => true
-			)
-	);
-	$styleGrayBg = array(
-			'fill' => array(
-					'type' => PHPExcel_Style_Fill::FILL_SOLID,
-					'color' => array('rgb' => 'EEEEEE')
-			)
-	);
-	$styleBorderAll = array(
-			'borders' => array(
-					'allborders'	=> array(
-							'style'		=> PHPExcel_Style_Border::BORDER_THIN
-					)
-			)
-	);
-	$styleAlignCenterTop = array(
-			'alignment' => array(
-					'horizontal'	=> PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
-					'vertical'		=> PHPExcel_Style_Alignment::VERTICAL_TOP,
-					'wrap'			=> true
-			),
-	);
-	$styleAPDown = array(
-			'fill' => array(
-					'type' => PHPExcel_Style_Fill::FILL_SOLID,
-					'color' => array('rgb' => 'F9BBBC')
-			)
-	);
-
-	// Generate excel....
-	try {
-		$objPHPExcel = new PHPExcel();
-		$worksheetReport = $objPHPExcel->getActiveSheet();
-		$worksheetReport->setTitle('Server '.$serverId." (".$serverAddr.")");
-
-		// Set default alignment ke kiri atas...
-		$objPHPExcel->getDefaultStyle()
-		->getAlignment()
-		->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_LEFT)
-		->setVertical(PHPExcel_Style_Alignment::VERTICAL_TOP);
-
-		// Set up kolom -----------------------------------
-		foreach ($columnWidths as $colIdx => $colWidth) {
-			$worksheetReport->getColumnDimensionByColumn($colIdx)->setWidth($colWidth);
-		}
-
-		// Judul worksheet pada bagian atas
-		$worksheetReport->mergeCellsByColumnAndRow(
-				IDX_COL_HOME, IDX_ROW_START,
-				IDX_COL_HOME+TABLE_COLS-1, IDX_ROW_START+1)
-				->setCellValueByColumnAndRow(IDX_COL_HOME, IDX_ROW_START, "Hasil Pencarian");
-
-		$worksheetReport->getStyleByColumnAndRow(IDX_COL_HOME, IDX_ROW_START)
-		->applyFromArray($styleHeader); // Set style
-		$worksheetReport->getStyleByColumnAndRow(IDX_COL_HOME, IDX_ROW_START)
-		->getFont()->setSize(18);
-
-		$rowBaseTable	= IDX_ROW_START+4;
-
-		// Baris judul
-		$worksheetReport->mergeCellsByColumnAndRow(
-				IDX_COL_HOME, $rowBaseTable-1,
-				IDX_COL_HOME+TABLE_COLS-1, $rowBaseTable-1)
-				->setCellValueByColumnAndRow(IDX_COL_HOME, $rowBaseTable-1,
-						"Search field: ".$queryField.", query: \"".$queryText.
-						"\" (".$jmlHasil." result, ".$jmlDown." down)");
-
-		$worksheetReport->mergeCellsByColumnAndRow(
-				IDX_COL_HOME, $rowBaseTable,
-				IDX_COL_HOME+TABLE_COLS-1, $rowBaseTable)
-				->setCellValueByColumnAndRow(IDX_COL_HOME, $rowBaseTable,
-						$serverAddr.' | '.date("d m Y, H:i"));
-
-		// Baris header tabel
-		$worksheetReport->mergeCellsByColumnAndRow(
-				IDX_COL_HOME, $rowBaseTable+1,
-				IDX_COL_HOME, $rowBaseTable+2)
-				->setCellValueByColumnAndRow(IDX_COL_HOME,$rowBaseTable+1,'Loc ID');
-		$worksheetReport->mergeCellsByColumnAndRow(
-				IDX_COL_HOME+1, $rowBaseTable+1,
-				IDX_COL_HOME+1, $rowBaseTable+2)
-				->setCellValueByColumnAndRow(IDX_COL_HOME+1,$rowBaseTable+1,'AP Name');
-
-		$worksheetReport->mergeCellsByColumnAndRow(
-				IDX_COL_HOME+2, $rowBaseTable+1,
-				IDX_COL_HOME+2, $rowBaseTable+2)
-				->setCellValueByColumnAndRow(IDX_COL_HOME+2,$rowBaseTable+1,'Lokasi');
+				->setCellValueByColumnAndRow(IDX_COL_HOME+2,$rowBaseTable+1,'Jenis Kelamin');
 		
 		$worksheetReport->mergeCellsByColumnAndRow(
 				IDX_COL_HOME+3, $rowBaseTable+1,
 				IDX_COL_HOME+3, $rowBaseTable+2)
-				->setCellValueByColumnAndRow(IDX_COL_HOME+3,$rowBaseTable+1,'IP Address');
-		
+				->setCellValueByColumnAndRow(IDX_COL_HOME+3,$rowBaseTable+1,'Pendidikan');
+				
 		$worksheetReport->mergeCellsByColumnAndRow(
 				IDX_COL_HOME+4, $rowBaseTable+1,
 				IDX_COL_HOME+4, $rowBaseTable+2)
-				->setCellValueByColumnAndRow(IDX_COL_HOME+4,$rowBaseTable+1,'MAC Address');
-		
+				->setCellValueByColumnAndRow(IDX_COL_HOME+4,$rowBaseTable+1,'Pekerjaan');		
+				
 		$worksheetReport->mergeCellsByColumnAndRow(
 				IDX_COL_HOME+5, $rowBaseTable+1,
 				IDX_COL_HOME+5, $rowBaseTable+2)
-				->setCellValueByColumnAndRow(IDX_COL_HOME+5,$rowBaseTable+1,'Status');
+				->setCellValueByColumnAndRow(IDX_COL_HOME+5,$rowBaseTable+1,'Kuisioner 1');		
+				
+		$worksheetReport->mergeCellsByColumnAndRow(
+				IDX_COL_HOME+6, $rowBaseTable+1,
+				IDX_COL_HOME+6, $rowBaseTable+2)
+				->setCellValueByColumnAndRow(IDX_COL_HOME+6,$rowBaseTable+1,'Kuisioner 2');		
+				
+		$worksheetReport->mergeCellsByColumnAndRow(
+				IDX_COL_HOME+7, $rowBaseTable+1,
+				IDX_COL_HOME+7, $rowBaseTable+2)
+				->setCellValueByColumnAndRow(IDX_COL_HOME+7,$rowBaseTable+1,'Kuisioner 3');		
+				
+		$worksheetReport->mergeCellsByColumnAndRow(
+				IDX_COL_HOME+8, $rowBaseTable+1,
+				IDX_COL_HOME+8, $rowBaseTable+2)
+				->setCellValueByColumnAndRow(IDX_COL_HOME+8,$rowBaseTable+1,'Kuisioner 4');		
+				
+		$worksheetReport->mergeCellsByColumnAndRow(
+				IDX_COL_HOME+9, $rowBaseTable+1,
+				IDX_COL_HOME+9, $rowBaseTable+2)
+				->setCellValueByColumnAndRow(IDX_COL_HOME+9,$rowBaseTable+1,'Kuisioner 5');		
+				
+		$worksheetReport->mergeCellsByColumnAndRow(
+				IDX_COL_HOME+10, $rowBaseTable+1,
+				IDX_COL_HOME+10, $rowBaseTable+2)
+				->setCellValueByColumnAndRow(IDX_COL_HOME+10,$rowBaseTable+1,'Kuisioner 6');		
+				
+		$worksheetReport->mergeCellsByColumnAndRow(
+				IDX_COL_HOME+11, $rowBaseTable+1,
+				IDX_COL_HOME+11, $rowBaseTable+2)
+				->setCellValueByColumnAndRow(IDX_COL_HOME+11,$rowBaseTable+1,'Kuisioner 7');		
+				
+		$worksheetReport->mergeCellsByColumnAndRow(
+				IDX_COL_HOME+12, $rowBaseTable+1,
+				IDX_COL_HOME+12, $rowBaseTable+2)
+				->setCellValueByColumnAndRow(IDX_COL_HOME+12,$rowBaseTable+1,'Kuisioner 8');		
+				
+		$worksheetReport->mergeCellsByColumnAndRow(
+				IDX_COL_HOME+13, $rowBaseTable+1,
+				IDX_COL_HOME+13, $rowBaseTable+2)
+				->setCellValueByColumnAndRow(IDX_COL_HOME+13,$rowBaseTable+1,'Kuisioner 9');		
+				
+		$worksheetReport->mergeCellsByColumnAndRow(
+				IDX_COL_HOME+14, $rowBaseTable+1,
+				IDX_COL_HOME+14, $rowBaseTable+2)
+				->setCellValueByColumnAndRow(IDX_COL_HOME+14,$rowBaseTable+1,'Kuisioner 10');
 
+		$worksheetReport->mergeCellsByColumnAndRow(
+				IDX_COL_HOME+15, $rowBaseTable+1,
+				IDX_COL_HOME+15, $rowBaseTable+2)
+				->setCellValueByColumnAndRow(IDX_COL_HOME+15,$rowBaseTable+1,'Kuisioner 11');
+				
+		$worksheetReport->mergeCellsByColumnAndRow(
+				IDX_COL_HOME+16, $rowBaseTable+1,
+				IDX_COL_HOME+16, $rowBaseTable+2)
+				->setCellValueByColumnAndRow(IDX_COL_HOME+16,$rowBaseTable+1,'Kuisioner 12');	
+
+		$worksheetReport->mergeCellsByColumnAndRow(
+				IDX_COL_HOME+17, $rowBaseTable+1,
+				IDX_COL_HOME+17, $rowBaseTable+2)
+				->setCellValueByColumnAndRow(IDX_COL_HOME+17,$rowBaseTable+1,'Kuisioner 13');
+				
+		$worksheetReport->mergeCellsByColumnAndRow(
+				IDX_COL_HOME+18, $rowBaseTable+1,
+				IDX_COL_HOME+18, $rowBaseTable+2)
+				->setCellValueByColumnAndRow(IDX_COL_HOME+18,$rowBaseTable+1,'Kuisioner 14');		
+				
+		
+		
 		// Set border header
 		$worksheetReport->getStyleByColumnAndRow(
 				IDX_COL_HOME,$rowBaseTable+1,
@@ -366,35 +219,51 @@ function do_autelan_export_xlsx($JSONResult, $serverId, $serverAddr, $queryField
 				->applyFromArray($styleHeader)
 				->applyFromArray($styleBorderAll)
 				->applyFromArray($styleGrayBg);
-
+		
 		// Isi body tabel
 		$counterItem	= 0;
 		$currentRow		= $rowBaseTable + 3;
-		foreach ($JSONResult['list_data']['data'] as $itemResult) {
+		foreach ($listRespon as $itemResult) {
 			$counterItem++;
 			$worksheetReport->setCellValueByColumnAndRow(
-					IDX_COL_HOME, $currentRow, $itemResult->loc_id);
+					IDX_COL_HOME, $currentRow, $itemResult['nomer']);
 			$worksheetReport->setCellValueByColumnAndRow(
-					IDX_COL_HOME+1, $currentRow, $itemResult->ap_name);
-				
+					IDX_COL_HOME+1, $currentRow, $itemResult['umur']);
 			$worksheetReport->setCellValueByColumnAndRow(
-					IDX_COL_HOME+2, $currentRow, $itemResult->location);
-			$worksheetReport->getStyleByColumnAndRow(IDX_COL_HOME+2, $currentRow)
-			->getAlignment()->setWrapText(true);
+					IDX_COL_HOME+2, $currentRow, $itemResult['jenkel']);
+			$worksheetReport->setCellValueByColumnAndRow(
+					IDX_COL_HOME+3, $currentRow, $itemResult['pendidikan']);
+			$worksheetReport->setCellValueByColumnAndRow(
+					IDX_COL_HOME+4, $currentRow, $itemResult['pekerjaan']);
+			$worksheetReport->setCellValueByColumnAndRow(
+					IDX_COL_HOME+5, $currentRow, $itemResult['prosedur']);
+			$worksheetReport->setCellValueByColumnAndRow(
+					IDX_COL_HOME+6, $currentRow, $itemResult['persyaratan']);
+			$worksheetReport->setCellValueByColumnAndRow(
+					IDX_COL_HOME+7, $currentRow, $itemResult['kejelasan']);
+			$worksheetReport->setCellValueByColumnAndRow(
+					IDX_COL_HOME+8, $currentRow, $itemResult['kedisiplinan']);
+			$worksheetReport->setCellValueByColumnAndRow(
+					IDX_COL_HOME+9, $currentRow, $itemResult['tanggungjawab']);
+			$worksheetReport->setCellValueByColumnAndRow(
+					IDX_COL_HOME+10, $currentRow, $itemResult['kemampuan']);
+			$worksheetReport->setCellValueByColumnAndRow(
+					IDX_COL_HOME+11, $currentRow, $itemResult['kecepatan']);
+			$worksheetReport->setCellValueByColumnAndRow(
+					IDX_COL_HOME+12, $currentRow, $itemResult['keadilan']);
+			$worksheetReport->setCellValueByColumnAndRow(
+					IDX_COL_HOME+13, $currentRow, $itemResult['kesopanan']);
+			$worksheetReport->setCellValueByColumnAndRow(
+					IDX_COL_HOME+14, $currentRow, $itemResult['kewajaranBiaya']);
+			$worksheetReport->setCellValueByColumnAndRow(
+					IDX_COL_HOME+15, $currentRow, $itemResult['kepastianBiaya']);
+			$worksheetReport->setCellValueByColumnAndRow(
+					IDX_COL_HOME+16, $currentRow, $itemResult['kepastianJadwal']);
+			$worksheetReport->setCellValueByColumnAndRow(
+					IDX_COL_HOME+17, $currentRow, $itemResult['kenyamanan']);		
+			$worksheetReport->setCellValueByColumnAndRow(
+					IDX_COL_HOME+18, $currentRow, $itemResult['keamanan']);
 			
-			$worksheetReport->setCellValueByColumnAndRow(
-					IDX_COL_HOME+3, $currentRow, $itemResult->ap_ip_address);
-			$worksheetReport->setCellValueByColumnAndRow(
-					IDX_COL_HOME+4, $currentRow, $itemResult->mac_address);
-			$worksheetReport->setCellValueByColumnAndRow(
-					IDX_COL_HOME+5, $currentRow, $itemResult->status);
-			
-			if (strtolower($itemResult->status) == "down") {
-				$worksheetReport->getStyleByColumnAndRow(
-						IDX_COL_HOME,$currentRow,
-						IDX_COL_HOME+TABLE_COLS-1,$currentRow)
-						->applyFromArray($styleAPDown);
-			}
 			$currentRow++;
 		}
 		// Set border untuk seluruh cell
@@ -402,11 +271,11 @@ function do_autelan_export_xlsx($JSONResult, $serverId, $serverAddr, $queryField
 				IDX_COL_HOME,$rowBaseTable+1,
 				IDX_COL_HOME+TABLE_COLS-1,$currentRow-1)
 				->applyFromArray($styleBorderAll);
-
+		
 		header('Content-Type: application/vnd.ms-excel'); //mime type
 		header('Content-Disposition: attachment;filename="'.$exportFileName.'"'); //tell browser what's the file name
 		header('Cache-Control: max-age=0'); //no cache
-
+		
 		//save it to Excel5 format (excel 2003 .XLS file), change this to 'Excel2007' (and adjust the filename extension, also the header mime type)
 		//if you want to save it as .XLSX Excel 2007 format
 		$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
@@ -415,5 +284,4 @@ function do_autelan_export_xlsx($JSONResult, $serverId, $serverAddr, $queryField
 	} catch (Exception $e) {
 		die('[PHPExcel error] '.$e->getMessage()."<br> Trace:<br>".$e->getTraceAsString());
 	}
-
 }

@@ -30,6 +30,15 @@ class Administrasi extends CI_Controller{
 		$this->load->template_admin("lihat_respon", $data, true);
 	}
 	
+	public function export_respon(){
+		if(!$this->load->cek_sesi()) exit;
+		$this->load->model('mkuisioner');
+		$this->load->helper('export_xlsx');
+	
+		$data['listRespon'] = $this->mkuisioner->getDataKuisioner();
+		do_export_xlsx($data['listRespon']);
+	}
+	
 	/*tambahan buat datatables
 	
 	function ssp_tm_alkes(){
