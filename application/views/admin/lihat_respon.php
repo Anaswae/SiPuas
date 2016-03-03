@@ -3,7 +3,7 @@
 		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 			<h3 class="page-header">Lihat Respon</h3>
 			
-			<div class="row placeholders">
+			<div class="row">
 				<table class="table table-striped table-bordered table-hover" id="dataTables-list">
                     <thead>
                         <tr>
@@ -29,7 +29,32 @@
                         </tr>
                     </thead>
                     <tbody>
-                        
+                        <?php
+							foreach($listRespon as $item)
+							{
+								echo '<tr>
+										<td>'.$item['nomer'].'</td>
+										<td>'.$item['umur'].'</td>
+										<td>'.$item['jenkel'].'</td>
+										<td>'.$item['pendidikan'].'</td>
+										<td>'.$item['pekerjaan'].'</td>
+										<td>'.$item['prosedur'].'</td>
+										<td>'.$item['persyaratan'].'</td>
+										<td>'.$item['kejelasan'].'</td>
+										<td>'.$item['kedisiplinan'].'</td>
+										<td>'.$item['tanggungjawab'].'</td>
+										<td>'.$item['kemampuan'].'</td>
+										<td>'.$item['kecepatan'].'</td>
+										<td>'.$item['keadilan'].'</td>
+										<td>'.$item['kesopanan'].'</td>
+										<td>'.$item['kewajaranBiaya'].'</td>
+										<td>'.$item['kepastianBiaya'].'</td>
+										<td>'.$item['kepastianJadwal'].'</td>
+										<td>'.$item['kenyamanan'].'</td>
+										<td>'.$item['keamanan'].'</td>
+								</tr>';
+							}
+						?>
                     </tbody>
                 </table>
 			</div>	
@@ -40,37 +65,9 @@
 <script>
     $(function() {
         $('#dataTables-list').dataTable({
-            "fnCreatedRow": function( nRow, aData, iDataIndex ) {
-                var temp = $('td:eq(0)', nRow).text();
-                var temp = temp.split('|');
-                var numbering = temp[0];
-                var id = temp[1];
-                
-                var price = $('td:eq(2)', nRow).text();
-                
-                
-                
-                
-                $('td:eq(0)', nRow).html(numbering);
-                $('td:eq(2)', nRow).html('<span class="price">'+ price +'</span>');
-                $('td:eq(3)', nRow).html(status);
-                $('td:eq(4)', nRow).html(string);
-                $('td:eq(0),td:eq(3),td:eq(4)', nRow).css('text-align','center');
-                $('td:eq(2)', nRow).css('text-align','right');
-                $('td:eq(2)', nRow).find('.price').autoNumeric('init', {aSep: '.', aDec: ',',  mDec: '0'});
-            },
-            "bAutoWidth": true, // Disable the auto width calculation 
-            "aoColumns": [
-                { "sWidth": "6%" },
-                { "sWidth": "6%" },
-                { "sWidth": "20%" },
-                { "sWidth": "15%" },
-                { "sWidth": "7%" }
-            ],
-            "bProcessing": true,
-            "bServerSide": true,
-            "sAjaxSource": baseurl+"Administrasi/ssp_tm_alkes"
-        });
+			responsive:true,
+			scrollX:true
+		});
         $('#dataTables-list').each(function(){
             var datatable = $(this);
             // LENGTH - Inline-Form control

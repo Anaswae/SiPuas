@@ -20,16 +20,17 @@ class Administrasi extends CI_Controller{
 		$this->load->template_admin("dashboard", $data, true);
 	}
 	
-	
-	
-	/*tambahan buat datatables*/
 	public function lihat_respon(){
 		if(!$this->load->cek_sesi()) exit;
+		$this->load->model('mkuisioner');
 	
+		$data['listRespon'] = $this->mkuisioner->getDataKuisioner();
 		$data['pageTitle'] = "Dashboard Administrator";
 		$data['activePage'] = "all";
 		$this->load->template_admin("lihat_respon", $data, true);
 	}
+	
+	/*tambahan buat datatables
 	
 	function ssp_tm_alkes(){
         $aColumns = array('nomer', 'umur', 'jenkel', 'pendidikan', 'pekerjaan', 'prosedur', 'persyaratan', 'kejelasan', 'kedisiplinan', 'tanggungjawab', 'kemampuan', 'kecepatan', 'keadilan', 'kesopanan', 'kewajaranBiaya', 'kepastianBiaya', 'kepastianJadwal', 'kenyamanan', 'keamanan');
@@ -103,7 +104,7 @@ class Administrasi extends CI_Controller{
         foreach ($rResult->result_array() as $aRow){
             $row = array();
             for ( $i=0 ; $i<count($aColumns) ; $i++ ){
-                /* General output */
+                /* General output 
                 if($i < 1)
                     $row[] = $numbering+$page.'|'.$aRow[ $aColumns[$i] ];
                 else
@@ -114,5 +115,7 @@ class Administrasi extends CI_Controller{
         }
         
         echo json_encode( $output );
-    }
+    }*/
+	
+	
 }
