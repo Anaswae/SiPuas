@@ -61,19 +61,3 @@
 		</div>
 	</div>
 </div>
-
-<script>
-    $(function() {
-        $('#dataTables-list').dataTable({
-			responsive:true,
-			scrollX:true
-		});
-        $('#dataTables-list').each(function(){
-            var datatable = $(this);
-            // LENGTH - Inline-Form control
-            var length_sel = datatable.closest('.dataTables_wrapper').find('div[id$=_length] select');
-            length_sel.addClass('form-control input-sm');
-            
-        });
-    });
-</script>

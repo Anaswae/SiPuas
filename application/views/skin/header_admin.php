@@ -19,7 +19,6 @@
 <!-- Style for DataTables -->
 <link href="<?php echo base_url("/assets/css/dataTables.bootstrap.css");?>" rel="stylesheet">
 
-<script type='text/javascript' src="<?php echo base_url('/assets/js/jquery.min.js'); ?>"></script>
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -28,8 +27,9 @@
 	
 </head>
 <body>
-	<?php if(empty($useSimple)){
-		if (!isset($activePage)) $activePage = null;
+	<?php 
+		if(empty($useSimple)){
+			if (!isset($activePage))
 	?>
 	
 	<!--  Membuat variabel untuk menyimpan variabel-variabel php ke dalam JavaScript-->

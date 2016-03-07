@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Administrasi extends CI_Controller{
 	public function index(){
 		if(!$this->load->cek_sesi()) exit;
-	
+		
 		$this->dashboard();
 	}
 	
@@ -26,7 +26,7 @@ class Administrasi extends CI_Controller{
 	
 		$data['listRespon'] = $this->mkuisioner->getDataKuisioner();
 		$data['pageTitle'] = "Dashboard Administrator";
-		$data['activePage'] = "all";
+		$data['activePage'] = "respon";
 		$this->load->template_admin("lihat_respon", $data, true);
 	}
 	
