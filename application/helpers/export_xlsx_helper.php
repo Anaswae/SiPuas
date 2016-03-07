@@ -1,5 +1,5 @@
 <?php
-function do_export_xlsx($listRespon) {
+function do_export_xlsx($listRespon, $simpulan) {
 	$CI =& get_instance();
 	
 	// load the excel library
@@ -24,14 +24,14 @@ function do_export_xlsx($listRespon) {
 			12,	// [J] Kolom kuisioner 3
 			12,	// [I] Kolom kuisioner 2
 			12, // [K] Kolom kuisioner 4
-			12, // [K] Kolom kuisioner 5
+			16, // [K] Kolom kuisioner 5
 			12, // [K] Kolom kuisioner 6
 			12, // [K] Kolom kuisioner 7
 			12, // [K] Kolom kuisioner 8
 			12, // [K] Kolom kuisioner 9
-			12, // [K] Kolom kuisioner 10
-			12, // [K] Kolom kuisioner 11
-			12, // [K] Kolom kuisioner 12
+			15, // [K] Kolom kuisioner 10
+			15, // [K] Kolom kuisioner 11
+			16, // [K] Kolom kuisioner 12
 			12, // [K] Kolom kuisioner 13
 			12, // [K] Kolom kuisioner 14
 			
@@ -143,72 +143,72 @@ function do_export_xlsx($listRespon) {
 		$worksheetReport->mergeCellsByColumnAndRow(
 				IDX_COL_HOME+5, $rowBaseTable+1,
 				IDX_COL_HOME+5, $rowBaseTable+2)
-				->setCellValueByColumnAndRow(IDX_COL_HOME+5,$rowBaseTable+1,'Kuisioner 1');		
+				->setCellValueByColumnAndRow(IDX_COL_HOME+5,$rowBaseTable+1,'Prosedur');		
 				
 		$worksheetReport->mergeCellsByColumnAndRow(
 				IDX_COL_HOME+6, $rowBaseTable+1,
 				IDX_COL_HOME+6, $rowBaseTable+2)
-				->setCellValueByColumnAndRow(IDX_COL_HOME+6,$rowBaseTable+1,'Kuisioner 2');		
+				->setCellValueByColumnAndRow(IDX_COL_HOME+6,$rowBaseTable+1,'Persyaratan');		
 				
 		$worksheetReport->mergeCellsByColumnAndRow(
 				IDX_COL_HOME+7, $rowBaseTable+1,
 				IDX_COL_HOME+7, $rowBaseTable+2)
-				->setCellValueByColumnAndRow(IDX_COL_HOME+7,$rowBaseTable+1,'Kuisioner 3');		
+				->setCellValueByColumnAndRow(IDX_COL_HOME+7,$rowBaseTable+1,'Kejelasan');		
 				
 		$worksheetReport->mergeCellsByColumnAndRow(
 				IDX_COL_HOME+8, $rowBaseTable+1,
 				IDX_COL_HOME+8, $rowBaseTable+2)
-				->setCellValueByColumnAndRow(IDX_COL_HOME+8,$rowBaseTable+1,'Kuisioner 4');		
+				->setCellValueByColumnAndRow(IDX_COL_HOME+8,$rowBaseTable+1,'Kedisiplinan');		
 				
 		$worksheetReport->mergeCellsByColumnAndRow(
 				IDX_COL_HOME+9, $rowBaseTable+1,
 				IDX_COL_HOME+9, $rowBaseTable+2)
-				->setCellValueByColumnAndRow(IDX_COL_HOME+9,$rowBaseTable+1,'Kuisioner 5');		
+				->setCellValueByColumnAndRow(IDX_COL_HOME+9,$rowBaseTable+1,'Tanggung Jawab');		
 				
 		$worksheetReport->mergeCellsByColumnAndRow(
 				IDX_COL_HOME+10, $rowBaseTable+1,
 				IDX_COL_HOME+10, $rowBaseTable+2)
-				->setCellValueByColumnAndRow(IDX_COL_HOME+10,$rowBaseTable+1,'Kuisioner 6');		
+				->setCellValueByColumnAndRow(IDX_COL_HOME+10,$rowBaseTable+1,'Kemampuan');		
 				
 		$worksheetReport->mergeCellsByColumnAndRow(
 				IDX_COL_HOME+11, $rowBaseTable+1,
 				IDX_COL_HOME+11, $rowBaseTable+2)
-				->setCellValueByColumnAndRow(IDX_COL_HOME+11,$rowBaseTable+1,'Kuisioner 7');		
+				->setCellValueByColumnAndRow(IDX_COL_HOME+11,$rowBaseTable+1,'Kecepatan');		
 				
 		$worksheetReport->mergeCellsByColumnAndRow(
 				IDX_COL_HOME+12, $rowBaseTable+1,
 				IDX_COL_HOME+12, $rowBaseTable+2)
-				->setCellValueByColumnAndRow(IDX_COL_HOME+12,$rowBaseTable+1,'Kuisioner 8');		
+				->setCellValueByColumnAndRow(IDX_COL_HOME+12,$rowBaseTable+1,'Keadilan');		
 				
 		$worksheetReport->mergeCellsByColumnAndRow(
 				IDX_COL_HOME+13, $rowBaseTable+1,
 				IDX_COL_HOME+13, $rowBaseTable+2)
-				->setCellValueByColumnAndRow(IDX_COL_HOME+13,$rowBaseTable+1,'Kuisioner 9');		
+				->setCellValueByColumnAndRow(IDX_COL_HOME+13,$rowBaseTable+1,'Kesopanan');		
 				
 		$worksheetReport->mergeCellsByColumnAndRow(
 				IDX_COL_HOME+14, $rowBaseTable+1,
 				IDX_COL_HOME+14, $rowBaseTable+2)
-				->setCellValueByColumnAndRow(IDX_COL_HOME+14,$rowBaseTable+1,'Kuisioner 10');
+				->setCellValueByColumnAndRow(IDX_COL_HOME+14,$rowBaseTable+1,'Kewajaran Biaya');
 
 		$worksheetReport->mergeCellsByColumnAndRow(
 				IDX_COL_HOME+15, $rowBaseTable+1,
 				IDX_COL_HOME+15, $rowBaseTable+2)
-				->setCellValueByColumnAndRow(IDX_COL_HOME+15,$rowBaseTable+1,'Kuisioner 11');
+				->setCellValueByColumnAndRow(IDX_COL_HOME+15,$rowBaseTable+1,'Kepastian Biaya');
 				
 		$worksheetReport->mergeCellsByColumnAndRow(
 				IDX_COL_HOME+16, $rowBaseTable+1,
 				IDX_COL_HOME+16, $rowBaseTable+2)
-				->setCellValueByColumnAndRow(IDX_COL_HOME+16,$rowBaseTable+1,'Kuisioner 12');	
+				->setCellValueByColumnAndRow(IDX_COL_HOME+16,$rowBaseTable+1,'Kepastian Jadwal');	
 
 		$worksheetReport->mergeCellsByColumnAndRow(
 				IDX_COL_HOME+17, $rowBaseTable+1,
 				IDX_COL_HOME+17, $rowBaseTable+2)
-				->setCellValueByColumnAndRow(IDX_COL_HOME+17,$rowBaseTable+1,'Kuisioner 13');
+				->setCellValueByColumnAndRow(IDX_COL_HOME+17,$rowBaseTable+1,'Kenyamanan');
 				
 		$worksheetReport->mergeCellsByColumnAndRow(
 				IDX_COL_HOME+18, $rowBaseTable+1,
 				IDX_COL_HOME+18, $rowBaseTable+2)
-				->setCellValueByColumnAndRow(IDX_COL_HOME+18,$rowBaseTable+1,'Kuisioner 14');		
+				->setCellValueByColumnAndRow(IDX_COL_HOME+18,$rowBaseTable+1,'Keamanan');		
 				
 		
 		
@@ -266,6 +266,14 @@ function do_export_xlsx($listRespon) {
 			
 			$currentRow++;
 		}
+		
+		$worksheetReport->setCellValueByColumnAndRow(IDX_COL_HOME, $currentRow + 2, 
+			"Kesimpulan Kuisioner: ");
+			
+		$worksheetReport->setCellValueByColumnAndRow(IDX_COL_HOME, $currentRow + 3, 
+			"    Kualitas Pelayanan ".$simpulan['kinerja']." dengan nilai ".$simpulan['konversi']." ( ".$simpulan['mutu']." )");
+		
+		
 		// Set border untuk seluruh cell
 		$worksheetReport->getStyleByColumnAndRow(
 				IDX_COL_HOME,$rowBaseTable+1,

@@ -36,7 +36,8 @@ class Administrasi extends CI_Controller{
 		$this->load->helper('export_xlsx');
 	
 		$data['listRespon'] = $this->mkuisioner->getDataKuisioner();
-		do_export_xlsx($data['listRespon']);
+		$data['simpulan'] = $this->mkuisioner->simpulanIKM();
+		do_export_xlsx($data['listRespon'], $data['simpulan']);
 	}
 	
 	/*tambahan buat datatables

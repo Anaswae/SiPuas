@@ -247,49 +247,5 @@ class Admin extends CI_Model{
 		unset($_SESSION['adminName']);
 	}
 	
-	
-	
-	
-	/*buat data tables*/
-	function ssp_tm_alkes($aColumns, $sWhere, $sOrder, $sLimit)
-    {
-        $query = $this->db->query("
-           SELECT * FROM (
-                SELECT a.*, CONCAT_WS('|', a.nomer) AS add_data
-                FROM tbl_kuisioner a
-            ) A
-            $sWhere
-            $sOrder
-            $sLimit
-        ");
-        
-        return $query;
-    }
-    
-    function ssp_tm_alkes_total($sIndexColumn){
-        $query = $this->db->query("
-            SELECT $sIndexColumn
-            FROM (
-                SELECT a.*, CONCAT_WS('|', a.nomer) AS add_data
-                FROM tbl_kuisioner a
-            ) A
-        ");
-        
-        return $query;
-    }
-	
-	function tm_alkes_total(){
-        return $this->db->count_all_results('tbl_kuisioner');
-    }
-	
-	function get_row_tm_alkes($id){
-        $array = array(
-            'nomer' => $id
-        );
-        $this->db->where($array);
-        $this->db->from('tbl_kuisioner');
-        
-        return $this->db->get();
-    }
 }
 ?>
