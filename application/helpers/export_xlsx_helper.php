@@ -1,5 +1,5 @@
 <?php
-function do_export_xlsx($listRespon, $simpulan) {
+function do_export_xlsx($listRespon, $simpulan, $hasil) {
 	$CI =& get_instance();
 	
 	// load the excel library
@@ -267,11 +267,166 @@ function do_export_xlsx($listRespon, $simpulan) {
 			$currentRow++;
 		}
 		
-		$worksheetReport->setCellValueByColumnAndRow(IDX_COL_HOME, $currentRow + 2, 
+		// Setting font color red
+		$FontColor = new PHPExcel_Style_Color();
+		
+		$worksheetReport->getStyleByColumnAndRow(
+				IDX_COL_HOME,$currentRow,
+				IDX_COL_HOME+TABLE_COLS-1,$currentRow+1)
+				->applyFromArray($styleHeader)
+				->applyFromArray($styleBorderAll)
+				->applyFromArray($styleGrayBg);
+		
+		$worksheetReport->mergeCellsByColumnAndRow(
+				IDX_COL_HOME, $currentRow,
+				IDX_COL_HOME+TABLE_COLS-15, $currentRow+1)
+				->setCellValueByColumnAndRow(IDX_COL_HOME,$currentRow,'Nilai Rata-Rata Setiap Pertanyaan:');
+				
+		$worksheetReport->mergeCellsByColumnAndRow(
+				IDX_COL_HOME+5, $currentRow,
+				IDX_COL_HOME+5, $currentRow+1)
+				->setCellValueByColumnAndRow(IDX_COL_HOME+5, $currentRow, $hasil['prosedur']);
+		if($hasil['prosedur'] <= 2){
+			$worksheetReport->getStyleByColumnAndRow(
+				IDX_COL_HOME+5, $currentRow,
+				IDX_COL_HOME+5, $currentRow+1)->getFont()->getColor()->setArgb($FontColor::COLOR_RED);
+		}
+		
+		$worksheetReport->mergeCellsByColumnAndRow(
+				IDX_COL_HOME+6, $currentRow,
+				IDX_COL_HOME+6, $currentRow+1)
+				->setCellValueByColumnAndRow(IDX_COL_HOME+6, $currentRow, $hasil['persyaratan']);
+		if($hasil['persyaratan'] <= 2){
+			$worksheetReport->getStyleByColumnAndRow(
+				IDX_COL_HOME+6, $currentRow,
+				IDX_COL_HOME+6, $currentRow+1)->getFont()->getColor()->setArgb($FontColor::COLOR_RED);
+		}
+		
+		$worksheetReport->mergeCellsByColumnAndRow(
+				IDX_COL_HOME+7, $currentRow,
+				IDX_COL_HOME+7, $currentRow+1)
+				->setCellValueByColumnAndRow(IDX_COL_HOME+7, $currentRow, $hasil['kejelasan']);
+		if($hasil['kejelasan'] <= 2){
+			$worksheetReport->getStyleByColumnAndRow(
+				IDX_COL_HOME+7, $currentRow,
+				IDX_COL_HOME+7, $currentRow+1)->getFont()->getColor()->setArgb($FontColor::COLOR_RED);
+		}
+		
+		$worksheetReport->mergeCellsByColumnAndRow(
+				IDX_COL_HOME+8, $currentRow,
+				IDX_COL_HOME+8, $currentRow+1)
+				->setCellValueByColumnAndRow(IDX_COL_HOME+8, $currentRow, $hasil['kedisiplinan']);
+		if($hasil['kedisiplinan'] <= 2){
+			$worksheetReport->getStyleByColumnAndRow(
+				IDX_COL_HOME+8, $currentRow,
+				IDX_COL_HOME+8, $currentRow+1)->getFont()->getColor()->setArgb($FontColor::COLOR_RED);
+		}
+		
+		$worksheetReport->mergeCellsByColumnAndRow(
+				IDX_COL_HOME+9, $currentRow,
+				IDX_COL_HOME+9, $currentRow+1)
+				->setCellValueByColumnAndRow(IDX_COL_HOME+9, $currentRow, $hasil['tanggungjawab']);
+		if($hasil['tanggungjawab'] <= 2){
+			$worksheetReport->getStyleByColumnAndRow(
+				IDX_COL_HOME+9, $currentRow,
+				IDX_COL_HOME+9, $currentRow+1)->getFont()->getColor()->setArgb($FontColor::COLOR_RED);
+		}
+		
+		$worksheetReport->mergeCellsByColumnAndRow(
+				IDX_COL_HOME+10, $currentRow,
+				IDX_COL_HOME+10, $currentRow+1)
+				->setCellValueByColumnAndRow(IDX_COL_HOME+10, $currentRow, $hasil['kemampuan']);			
+		if($hasil['kemampuan'] <= 2){
+			$worksheetReport->getStyleByColumnAndRow(
+				IDX_COL_HOME+10, $currentRow,
+				IDX_COL_HOME+10, $currentRow+1)->getFont()->getColor()->setArgb($FontColor::COLOR_RED);
+		}
+		
+		$worksheetReport->mergeCellsByColumnAndRow(
+				IDX_COL_HOME+11, $currentRow,
+				IDX_COL_HOME+11, $currentRow+1)
+				->setCellValueByColumnAndRow(IDX_COL_HOME+11, $currentRow, $hasil['kecepatan']);			
+		if($hasil['kecepatan'] <= 2){
+			$worksheetReport->getStyleByColumnAndRow(
+				IDX_COL_HOME+11, $currentRow,
+				IDX_COL_HOME+11, $currentRow+1)->getFont()->getColor()->setArgb($FontColor::COLOR_RED);
+		}
+		
+		$worksheetReport->mergeCellsByColumnAndRow(
+				IDX_COL_HOME+12, $currentRow,
+				IDX_COL_HOME+12, $currentRow+1)
+				->setCellValueByColumnAndRow(IDX_COL_HOME+12, $currentRow, $hasil['keadilan']);
+		if($hasil['keadilan'] <= 2){
+			$worksheetReport->getStyleByColumnAndRow(
+				IDX_COL_HOME+12, $currentRow,
+				IDX_COL_HOME+12, $currentRow+1)->getFont()->getColor()->setArgb($FontColor::COLOR_RED);
+		}
+		
+		$worksheetReport->mergeCellsByColumnAndRow(
+				IDX_COL_HOME+13, $currentRow,
+				IDX_COL_HOME+13, $currentRow+1)
+				->setCellValueByColumnAndRow(IDX_COL_HOME+13, $currentRow, $hasil['kesopanan']);
+		if($hasil['kesopanan'] <= 2){
+			$worksheetReport->getStyleByColumnAndRow(
+				IDX_COL_HOME+13, $currentRow,
+				IDX_COL_HOME+13, $currentRow+1)->getFont()->getColor()->setArgb($FontColor::COLOR_RED);
+		}
+		
+		$worksheetReport->mergeCellsByColumnAndRow(
+				IDX_COL_HOME+14, $currentRow,
+				IDX_COL_HOME+14, $currentRow+1)
+				->setCellValueByColumnAndRow(IDX_COL_HOME+14, $currentRow, $hasil['kewajaranBiaya']);	
+		if($hasil['kewajaranBiaya'] <= 2){
+			$worksheetReport->getStyleByColumnAndRow(
+				IDX_COL_HOME+14, $currentRow,
+				IDX_COL_HOME+14, $currentRow+1)->getFont()->getColor()->setArgb($FontColor::COLOR_RED);
+		}
+		
+		$worksheetReport->mergeCellsByColumnAndRow(
+				IDX_COL_HOME+15, $currentRow,
+				IDX_COL_HOME+15, $currentRow+1)
+				->setCellValueByColumnAndRow(IDX_COL_HOME+15, $currentRow, $hasil['kepastianBiaya']);
+		if($hasil['kepastianBiaya'] <= 2){
+			$worksheetReport->getStyleByColumnAndRow(
+				IDX_COL_HOME+15, $currentRow,
+				IDX_COL_HOME+15, $currentRow+1)->getFont()->getColor()->setArgb($FontColor::COLOR_RED);
+		}
+		
+		$worksheetReport->mergeCellsByColumnAndRow(
+				IDX_COL_HOME+16, $currentRow,
+				IDX_COL_HOME+16, $currentRow+1)
+				->setCellValueByColumnAndRow(IDX_COL_HOME+16, $currentRow, $hasil['kepastianJadwal']);
+		if($hasil['kepastianJadwal'] <= 2){
+			$worksheetReport->getStyleByColumnAndRow(
+				IDX_COL_HOME+16, $currentRow,
+				IDX_COL_HOME+16, $currentRow+1)->getFont()->getColor()->setArgb($FontColor::COLOR_RED);
+		}
+		
+		$worksheetReport->mergeCellsByColumnAndRow(
+				IDX_COL_HOME+17, $currentRow,
+				IDX_COL_HOME+17, $currentRow+1)
+				->setCellValueByColumnAndRow(IDX_COL_HOME+17, $currentRow, $hasil['kenyamanan']);
+		if($hasil['kenyamanan'] <= 2){
+			$worksheetReport->getStyleByColumnAndRow(
+				IDX_COL_HOME+17, $currentRow,
+				IDX_COL_HOME+17, $currentRow+1)->getFont()->getColor()->setArgb($FontColor::COLOR_RED);
+		}
+		
+		$worksheetReport->mergeCellsByColumnAndRow(
+				IDX_COL_HOME+18, $currentRow,
+				IDX_COL_HOME+18, $currentRow+1)
+				->setCellValueByColumnAndRow(IDX_COL_HOME+18, $currentRow, $hasil['keamanan']);
+		if($hasil['keamanan'] <= 2){
+			$worksheetReport->getStyleByColumnAndRow(
+				IDX_COL_HOME+18, $currentRow,
+				IDX_COL_HOME+18, $currentRow+1)->getFont()->getColor()->setArgb($FontColor::COLOR_RED);
+		}			
+		
+		$worksheetReport->setCellValueByColumnAndRow(IDX_COL_HOME, $currentRow + 4, 
 			"Kesimpulan Kuisioner: ");
 			
-		$worksheetReport->setCellValueByColumnAndRow(IDX_COL_HOME, $currentRow + 3, 
-			"    Kualitas Pelayanan ".$simpulan['kinerja']." dengan nilai ".$simpulan['konversi']." ( ".$simpulan['mutu']." )");
+		$worksheetReport->setCellValueByColumnAndRow(IDX_COL_HOME, $currentRow + 5, 
+			"    Kualitas Pelayanan '".$simpulan['kinerja']."' dengan nilai ".$simpulan['konversi']." ( ".$simpulan['mutu']." )");
 		
 		
 		// Set border untuk seluruh cell

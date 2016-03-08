@@ -16,20 +16,20 @@
                             <th class="title-center" style="font-size:1em; text-align:center;">Jenis Kelamin</th>
                             <th class="title-center" style="font-size:1em; text-align:center;">Pendidikan</th>
                             <th class="title-center" style="font-size:1em; text-align:center;">Pekerjaan</th>
-                            <th class="title-center" style="font-size:1em; text-align:center;">Kuisioner 1</th>
-                            <th class="title-center" style="font-size:1em; text-align:center;">Kuisioner 2</th>
-                            <th class="title-center" style="font-size:1em; text-align:center;">Kuisioner 3</th>
-                            <th class="title-center" style="font-size:1em; text-align:center;">Kuisioner 4</th>
-                            <th class="title-center" style="font-size:1em; text-align:center;">Kuisioner 5</th>
-                            <th class="title-center" style="font-size:1em; text-align:center;">Kuisioner 6</th>
-                            <th class="title-center" style="font-size:1em; text-align:center;">Kuisioner 7</th>
-                            <th class="title-center" style="font-size:1em; text-align:center;">Kuisioner 8</th>
-                            <th class="title-center" style="font-size:1em; text-align:center;">Kuisioner 9</th>
-                            <th class="title-center" style="font-size:1em; text-align:center;">Kuisioner 10</th>
-                            <th class="title-center" style="font-size:1em; text-align:center;">Kuisioner 11</th>
-                            <th class="title-center" style="font-size:1em; text-align:center;">Kuisioner 12</th>
-                            <th class="title-center" style="font-size:1em; text-align:center;">Kuisioner 13</th>
-                            <th class="title-center" style="font-size:1em; text-align:center;">Kuisioner 14</th>
+                            <th class="title-center" style="font-size:1em; text-align:center;">Prosedur</th>
+                            <th class="title-center" style="font-size:1em; text-align:center;">Persyaratan</th>
+                            <th class="title-center" style="font-size:1em; text-align:center;">Kejelasan</th>
+                            <th class="title-center" style="font-size:1em; text-align:center;">Kedisiplinan</th>
+                            <th class="title-center" style="font-size:1em; text-align:center;">Tanggung Jawab</th>
+                            <th class="title-center" style="font-size:1em; text-align:center;">Kemampuan</th>
+                            <th class="title-center" style="font-size:1em; text-align:center;">Kecepatan</th>
+                            <th class="title-center" style="font-size:1em; text-align:center;">Keadilan</th>
+                            <th class="title-center" style="font-size:1em; text-align:center;">Kesopanan</th>
+                            <th class="title-center" style="font-size:1em; text-align:center;">Keawajaran Biaya</th>
+                            <th class="title-center" style="font-size:1em; text-align:center;">Kepastian Biaya</th>
+                            <th class="title-center" style="font-size:1em; text-align:center;">Kepastian Jadwal</th>
+                            <th class="title-center" style="font-size:1em; text-align:center;">Kenyamanan</th>
+                            <th class="title-center" style="font-size:1em; text-align:center;">Keamanan</th>
                         </tr>
                     </thead>
                     <tbody>
