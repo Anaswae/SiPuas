@@ -4,7 +4,7 @@
 			<h2>Formulir Kuisioner Responden Tentang Pelayanan Publik</h2>
 			<hr>
 			<form method="POST" action="<?php echo base_url("form");?>" role="form">
-				<div class="col-md-6">	
+				<div class="col-lg-12 page active">	
 					<input type="hidden" name="umur" value="<?php echo (!empty($responden['umur']))?$responden['umur']:set_value('umur') ?>">
 					<input type="hidden" name="jenkel" value="<?php echo (!empty($responden['jenkel']))?$responden['jenkel']:set_value('jenkel') ?>">
 					<input type="hidden" name="pendidikan" value="<?php echo (!empty($responden['pendidikan']))?$responden['pendidikan']:set_value('pendidikan') ?>">
@@ -21,6 +21,8 @@
 								<td><label><input type="radio" name="prosedur" value="4" <?php echo set_radio('prosedur', '4'); ?> required> Sangat Mudah</label></td>
 							</tr>
 						</table>
+				</div>
+				<div class="col-lg-12 page">
 					<label for="persyaratan">2. Bagaimana pendapat Saudara tentang kesesuaian persyaratan pelayanan dengan jenis pelayanannya*</label>
 						<table class="table-kuisioner" border="0">
 							<tr>
@@ -32,6 +34,8 @@
 								<td><label><input type="radio" name="persyaratan" value="4" <?php echo set_radio('persyaratan', '4'); ?> required> Sangat Sesuai</label></td>
 							</tr>
 						</table>
+				</div>
+				<div class="col-lg-12 page">
 					<label for="kejelasan">3. Bagaimana pendapat Saudara tentang kejelasan dan kepastian petugas yang melayani*</label>
 						<table class="table-kuisioner" border="0">
 							<tr>
@@ -43,6 +47,8 @@
 								<td><label><input type="radio" name="kejelasan" value="4" <?php echo set_radio('kejelasan', '4'); ?> required> Sangat Jelas</label></td>
 							</tr>
 						</table>
+				</div>
+				<div class="col-lg-12 page">
 					<label for="kedisiplinan">4. Bagaimana pendapat Saudara tentang kedisiplinan petugas dalam memberikan pelayanan*</label>
 						<table class="table-kuisioner" border="0">
 							<tr>
@@ -53,7 +59,9 @@
 								<td><label><input type="radio" name="kedisiplinan" value="3" <?php echo set_radio('kedisiplinan', '3'); ?> required> Disiplin</label></td>
 								<td><label><input type="radio" name="kedisiplinan" value="4" <?php echo set_radio('kedisiplinan', '4'); ?> required> Sangat Disiplin</label></td>
 							</tr>
-						</table>						
+						</table>
+				</div>
+				<div class="col-lg-12 page">
 					<label for="tanggungjawab">5. Bagaimana pendapat Saudara tentang tanggung jawab petugas dalam memberikan pelayanan*</label>
 						<table class="table-kuisioner" border="0">
 							<tr>
@@ -65,6 +73,8 @@
 								<td><label><input type="radio" name="tanggungjawab" value="4" <?php echo set_radio('tanggungjawab', '4'); ?> required> Sangat Bertanggung Jawab</label></td>
 							</tr>
 						</table>
+				</div>
+				<div class="col-lg-12 page">
 					<label for="kemampuan">6. Bagaimana pendapat Saudara tentang kemampuan petugas dalam memberikan pelayanan*</label>
 						<table class="table-kuisioner" border="0">
 							<tr>
@@ -76,6 +86,8 @@
 								<td><label><input type="radio" name="kemampuan" value="4" <?php echo set_radio('kemampuan', '4'); ?> required> Sangat Mampu</label></td>
 							</tr>
 						</table>
+				</div>
+				<div class="col-lg-12 page">
 					<label for="kecepatan">7. Bagaimana pendapat Saudara tentang kecepatan pelayanan di unit ini*</label>
 						<table class="table-kuisioner" border="0">
 							<tr>
@@ -87,12 +99,8 @@
 								<td><label><input type="radio" name="kecepatan" value="4" <?php echo set_radio('kecepatan', '4'); ?> required> Sangat Cepat</label></td>
 							</tr>
 						</table>
-					<br>						
-					<button class="btn btn-lg btn-warning btn-block btn-custom" type="submit"
-						name="submit" style="width: 120px;">Register</button><br>
 				</div>
-	
-				<div class="col-md-6">
+				<div class="col-lg-12 page">
 					<label for="keadilan">8. Bagaimana pendapat Saudara tentang keadilan untuk mendapatkan pelayanan di unit ini*</label>
 						<table class="table-kuisioner" border="0">
 							<tr>
@@ -104,6 +112,8 @@
 								<td><label><input type="radio" name="keadilan" value="4" <?php echo set_radio('keadilan', '4'); ?> required> Sangat Adil</label></td>
 							</tr>
 						</table>
+				</div>
+				<div class="col-lg-12 page">
 					<label for="kesopanan">9. Bagaimana pendapat Saudara tentang kesopanan dan keramahan petugas dalam memberikan pelayanan*</label>
 						<table class="table-kuisioner" border="0">
 							<tr>
@@ -115,6 +125,8 @@
 								<td><label><input type="radio" name="kesopanan" value="4" <?php echo set_radio('kesopanan', '4'); ?> required> Sangat Sopan dan Ramah</label></td>
 							</tr>
 						</table>
+				</div>
+				<div class="col-lg-12 page">
 					<label for="kewajaranBiaya">10. Bagaimana pendapat Saudara tentang kewajaran biaya untuk mendapatkan pelayanan*</label>
 						<table class="table-kuisioner" border="0">
 							<tr>
@@ -126,6 +138,8 @@
 								<td><label><input type="radio" name="kewajaranBiaya" value="4" <?php echo set_radio('kewajaranBiaya', '4'); ?> required> Sangat Wajar</label></td>
 							</tr>
 						</table>
+				</div>
+				<div class="col-lg-12 page">
 					<label for="kepastianBiaya">11. Bagaimana pendapat Saudara tentang kesesuaian antara biaya yang dibayarkan dengan biaya yang telah ditetapkan*</label>
 						<table class="table-kuisioner" border="0">
 							<tr>
@@ -136,7 +150,9 @@
 								<td><label><input type="radio" name="kepastianBiaya" value="3" <?php echo set_radio('kepastianBiaya', '3'); ?> required> Banyak Sesuainya</label></td>
 								<td><label><input type="radio" name="kepastianBiaya" value="4" <?php echo set_radio('kepastianBiaya', '4'); ?> required> Selalu Sesuai</label></td>
 							</tr>
-						</table>						
+						</table>
+				</div>
+				<div class="col-lg-12 page">
 					<label for="kepastianJadwal">12. Bagaimana pendapat Saudara tentang ketepatan pelaksanaan terhadap jadwal waktu pelayanan*</label>
 						<table class="table-kuisioner" border="0">
 							<tr>
@@ -148,6 +164,8 @@
 								<td><label><input type="radio" name="kepastianJadwal" value="4" <?php echo set_radio('kepastianJadwal', '4'); ?> required> Selalu Tepat</label></td>
 							</tr>
 						</table>
+				</div>
+				<div class="col-lg-12 page">
 					<label for="kenyamanan">13. Bagaimana pendapat Saudara tentang kenyamanan di lingkungan unit pelayanan*</label>
 						<table class="table-kuisioner" border="0">
 							<tr>
@@ -159,6 +177,8 @@
 								<td><label><input type="radio" name="kenyamanan" value="4" <?php echo set_radio('kenyamanan', '4'); ?> required> Sangat Nyaman</label></td>
 							</tr>
 						</table>
+				</div>
+				<div class="col-lg-12 page">
 					<label for="keamanan">14. Bagaimana pendapat Saudara tentang keamanan pelayanan di unit ini*</label>
 						<table class="table-kuisioner" border="0">
 							<tr>
@@ -170,17 +190,63 @@
 								<td><label><input type="radio" name="keamanan" value="4" <?php echo set_radio('keamanan', '4'); ?> required> Sangat Aman</label></td>
 							</tr>
 						</table>
-					<?php
-						if (validation_errors() == true || ! empty( $error)) {
-							echo "<div class= \"alert alert-danger\"><ul>";
-								if(validation_errors() == true) echo validation_errors('<li>', '</li>');
-								if(! empty( $error)) echo $error;
-							echo "</ul></div>";
-						}
-					?>
-						&copy;SiPuas Powered By <a href="mailto:saptanto.sindu@gmail.com?Subject=SiPuas" target="_top">Ketampanan</a>
 				</div>
+				<br><br>
+				<div>
+					<button class="btn btn-lg btn-warning btn-block btn-custom" type="submit"
+							id="submit" name="submit" style="width: 120px;">Kirimkan</button><br>
+				</div>
+				<?php
+					if (validation_errors() == true || ! empty( $error)) {
+						echo "<div class= \"alert alert-danger\"><ul>";
+							if(validation_errors() == true) echo validation_errors('<li>', '</li>');
+							if(! empty( $error)) echo $error;
+						echo "</ul></div>";
+					}
+				?>
 			</form>
+			<div>
+				<button class="btn btn-default" id="prev"><< Pertanyaan Sebelumnya</button>
+				<button class="btn btn-default" id="next">Pertanyaan Selanjutnya >></button>
+			</div>
+			&copy;SiPuas Powered By <a href="mailto:saptanto.sindu@gmail.com?Subject=SiPuas" target="_top">Ketampanan</a>
 		</div>
 	</div>
 </div>
+
+<script>
+$(document).ready(function(){
+	$("#prev").hide();
+	$("#submit").hide();
+});
+
+var submitVar = function submitBut(){
+	if($('input[type="radio"]:checked').length < $(".page").length)
+		$("#submit").hide();
+    if($('input[type="radio"]:checked').length == $(".page").length)
+		$("#submit").show();
+};
+var sebelumnya = function(){
+	if($(".page.active").index()-1 == 0)
+		$("#prev").hide();	
+    if($(".page.active").index() > 0){
+    	$(".page.active").removeClass("active").prev().addClass("active");
+    	$("#next").show();
+    }
+    submitVar();
+};
+var setelahnya = function(){
+	if($(".page.active").index()+1 == $(".page").length-1){
+		$("#next").hide();
+	}
+    if($(".page.active").index() < $(".page").length-1){
+    	$(".page.active").removeClass("active").next().addClass("active");
+    	$("#prev").show();
+    }
+    submitVar();
+};
+
+$("#prev").click(sebelumnya);
+$("#next").click(setelahnya);
+$('input:radio').change(submitVar);
+</script>

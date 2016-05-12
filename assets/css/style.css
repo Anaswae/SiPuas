@@ -17,6 +17,15 @@ body{
 }
 
 table.table-kuisioner > tbody> tr > td{
-	padding: 5px 10px;
-	font-size: small;
+	padding: 5px 50px;
+	font-size: 20px;
+}
+
+.page {
+    display: none;
+    font-size: 20px;
+}
+
+.active {
+    display: inherit;
 }

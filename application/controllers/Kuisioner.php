@@ -4,6 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Kuisioner extends CI_Controller{
 	public function index(){
 		$data['pageTitle'] = "SiPuas | Responden Kuisioner Kepuasan Masyarakat";
+		$data['useSimple'] = true;
 		if ($this->form_validation->run() == FALSE){
 			
 		}else{
@@ -21,6 +22,7 @@ class Kuisioner extends CI_Controller{
 		}else{
 			$data['responden'] = $responden;
 			$data['pageTitle'] = "SiPuas | Kuisioner Kepuasan Masyarakat";
+			$data['useSimple'] = true;
 			if ($this->form_validation->run() == FALSE){
 				
 			}else{
