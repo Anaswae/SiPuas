@@ -8,11 +8,24 @@ $(document).ready(function(){
 		method: "post",
 		dataType: 'json',
 		success: function(response){
-			var ctx = $("#respondenChart").get(0).getContext("2d");
-			var myNewChart = new Chart(ctx);
-			
-			var myBarChart = new Chart(ctx).Bar(response);
-			
+			ctx = $("#respondenChart").get(0).getContext("2d");
+			myBarChart = new Chart(ctx, {
+				type: 'bar',
+			    data: response,
+			    options: {
+			    	scales: {
+			            yAxes: [{
+			                ticks: {
+			                    beginAtZero:true
+			                },
+			                scaleLabel: {
+			                	display: true,
+			                	labelString: "IKM"
+			                }
+			            }]
+			        } 
+			    }
+			});
 		}
 	});
 	

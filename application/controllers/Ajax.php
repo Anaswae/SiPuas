@@ -33,17 +33,34 @@ class Ajax extends CI_Controller{
 			array_push($data, $nilai);
 		}
 		
+		$konten = array();
+		$konten["label"] = "Data Kuisioner";
+		$fillColor = array();
+		$highlightFill = array();
+		$highlightStroke = array();
+		$strokeColor = array();
+		
+		foreach ($data as $elemen){
+			if($elemen < 2.0){
+				array_push($fillColor, "rgba(239,98,69,0.5)");
+				array_push($highlightFill, "rgb(99, 0, 0, 0.75)");
+				array_push($highlightStroke, "rgba(88, 0, 0,1)");
+				array_push($strokeColor, "rgba(88, 0, 0,0.8)");
+			}else {
+				array_push($fillColor, "rgba(220,220,220,0.5)");
+				array_push($highlightFill, "rgba(151,187,205,0.75)");
+				array_push($highlightStroke, "rgba(151,187,205,1)");
+				array_push($strokeColor, "rgba(151,187,205,0.8)");
+			}
+		}
+		$konten["backgroundColor"] = $fillColor;
+		$konten["borderColor"] = $strokeColor;
+		$konten["data"] = $data;
+		
 		echo json_encode(array(
 				'labels' => $labels,
 				'datasets' => array(
-						array(
-								'label' => 'Data Kuisioner',
-								'fillColor' => "rgba(220,220,220,0.5)",
-								'strokeColor' => "rgba(151,187,205,0.8)",
-								'highlightFill' => "rgba(151,187,205,0.75)",
-								'highlightStroke' => "rgba(151,187,205,1)",
-								'data' => $data
-						)
+						$konten
 				)
 		));
 	}

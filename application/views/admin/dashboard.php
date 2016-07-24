@@ -7,7 +7,7 @@
 			<div class="row placeholders">
 				<h3 align="left">Grafik Kualitas Pelayanan</h3>
 				
-				<canvas id="respondenChart" width="400" height="120"></canvas>
+				<canvas id="respondenChart" width="400" height="150"></canvas>
 				
 				<div class="col-xs-6 col-sm-6 placeholder">
 					<div class="panel panel-primary">

@@ -4,6 +4,8 @@
 <script type='text/javascript' src="<?php echo base_url('/assets/js/jquery.min.js'); ?>"></script>
 
 <script type='text/javascript'
+	src="<?php echo base_url('/assets/js/Chart.bundle.min.js');?>"></script>
+<script type='text/javascript'
 	src="<?php echo base_url('/assets/js/jquery.dataTables.min.js'); ?>"></script>
 	
 <script type='text/javascript'
@@ -11,10 +13,7 @@
 	
 <script type='text/javascript'
 	src="<?php echo base_url('/assets/js/bootstrap.js'); ?>"></script>
-
 	
-<script type='text/javascript'
-	src="<?php echo base_url('/assets/js/Chart.js');?>"></script>
 <?php if(isset($activePage)){?>
 <?php if($activePage == "dashboard") {?>
 <script type='text/javascript'
