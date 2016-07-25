@@ -5,9 +5,14 @@
 			
 			<h4 align="left">Selamat Datang <?php echo $this->session->adminName." (".$this->session->sessionEmail.")";?></h4>
 			<div class="row placeholders">
+				<?php if(!empty($simpulan)){?>
 				<h3 align="left">Grafik Kualitas Pelayanan</h3>
-				
-				<canvas id="respondenChart" width="400" height="150"></canvas>
+					<div class="col-xs-12 col-sm-12 placeholder">
+						<canvas id="respondenChart" width="400" height="150"></canvas>
+					</div>
+				<?php } else{?>
+				<h3 align="left">Belum ada responden</h3>
+				<?php }?>
 				
 				<div class="col-xs-6 col-sm-6 placeholder">
 					<div class="panel panel-primary">
@@ -15,11 +20,25 @@
 						    <h3 class="panel-title">Simpulan Kuisioner dari <?php echo $jumlahResponden;?> Responden</h3>
 						</div>
 						<div class="panel-body">
-						    Kualitas Pelayanan <?php echo $simpulan['kinerja']?><br>
-						    Dengan Nilai <?php echo $simpulan['konversi']." (".$simpulan['mutu'].")";?>
+						    Kualitas Pelayanan <?php if(!empty($simpulan)) echo $simpulan['kinerja']; else echo "-";?><br>
+						    Dengan Nilai <?php if(!empty($simpulan)) echo $simpulan['konversi']." (".$simpulan['mutu'].")"; else echo "-"?>
 						</div>
 					</div>
 				</div>
+				<?php if(!empty($simpulan)){?>
+				<div class="col-xs-6 col-sm-6 placeholder">
+					<div class="panel panel-danger">
+						<div class="panel-heading">
+						    <h3 class="panel-title">Hapus Semua Kuisioner</h3>
+						</div>
+						<div class="panel-body">
+						    <button type="button" class="btn btn-danger col-xs-12 col-sm-12 btn-lg" onclick="return hapus_kuisioner();">
+							  <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Hapus
+							</button>
+						</div>
+					</div>
+				</div>
+				<?php }?>
 			</div>	
 		</div>
 	</div>

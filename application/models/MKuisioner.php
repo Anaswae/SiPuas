@@ -6,6 +6,11 @@ class MKuisioner extends CI_Model{
 		parent::__construct();
 	}
 	
+	public function hapusDataKuisioner(){
+		if($this->db->empty_table('tbl_kuisioner'))
+			return "ok";
+	}
+	
 	public function getNomerResponden(){
 		$query = $this->db->get('tbl_kuisioner');
 		return "RSP-".str_pad($query->num_rows() + 1, 4, 0, STR_PAD_LEFT);
@@ -89,71 +94,78 @@ class MKuisioner extends CI_Model{
 	public function hitungNilaiUnsurPelayanan(){
 		$listKuisioner = $this->getDataKuisioner();
 		
-		$hasil = array(
-				'prosedur' => 0,
-				'persyaratan' => 0,
-				'kejelasan' => 0,
-				'kedisiplinan' => 0,
-				'tanggungjawab' => 0,
-				'kemampuan' => 0,
-				'kecepatan' => 0,
-				'keadilan' => 0,
-				'kesopanan' => 0,
-				'kewajaranBiaya' => 0,
-				'kepastianBiaya' => 0,
-				'kepastianJadwal' => 0,
-				'kenyamanan' => 0,
-				'keamanan' => 0
-		);
-		
-		$jumlahResponden = count($listKuisioner);
-		
-		foreach ($listKuisioner as $kuisioner){
-			foreach ($kuisioner as $pelayanan => $nilai){
-				if(array_key_exists($pelayanan, $hasil)){
-					$hasil[$pelayanan] += $nilai;
+		if(!empty($listKuisioner)){
+			$hasil = array(
+					'prosedur' => 0,
+					'persyaratan' => 0,
+					'kejelasan' => 0,
+					'kedisiplinan' => 0,
+					'tanggungjawab' => 0,
+					'kemampuan' => 0,
+					'kecepatan' => 0,
+					'keadilan' => 0,
+					'kesopanan' => 0,
+					'kewajaranBiaya' => 0,
+					'kepastianBiaya' => 0,
+					'kepastianJadwal' => 0,
+					'kenyamanan' => 0,
+					'keamanan' => 0
+			);
+			
+			$jumlahResponden = count($listKuisioner);
+			
+			foreach ($listKuisioner as $kuisioner){
+				foreach ($kuisioner as $pelayanan => $nilai){
+					if(array_key_exists($pelayanan, $hasil)){
+						$hasil[$pelayanan] += $nilai;
+					}
 				}
 			}
+			
+			foreach ($hasil as $unitPelayanan => $nilai){
+				$hasil[$unitPelayanan] = $nilai/$jumlahResponden;
+			}
+			
+			return $hasil;
 		}
-		
-		foreach ($hasil as $unitPelayanan => $nilai){
-			$hasil[$unitPelayanan] = $nilai/$jumlahResponden;
-		}
-		
-		return $hasil;
 	}
 	
 	public function hitungNilaiIKM() {
 		$nilaiUnsurPelayanan = $this->hitungNilaiUnsurPelayanan();
-		$result = 0;
 		
-		foreach ($nilaiUnsurPelayanan as $unsurPelayanan){
-			$result += $unsurPelayanan*0.071;
+		if(!empty($nilaiUnsurPelayanan)){
+			$result = 0;
+			
+			foreach ($nilaiUnsurPelayanan as $unsurPelayanan){
+				$result += $unsurPelayanan*0.071;
+			}
+			
+			return $result;
 		}
-		
-		return $result;
 	}
 	
 	public function simpulanIKM(){
 		$nilaiIKM = $this->hitungNilaiIKM();
-		$nilaiIKM = $nilaiIKM * 25;
-		
-		if($nilaiIKM >= 25 && $nilaiIKM <= 43.75){
-			$result['mutu'] = 'D';
-			$result['kinerja'] = 'Tidak Baik';
-		}else if($nilaiIKM > 43.75 && $nilaiIKM <= 62.5){
-			$result['mutu'] = 'C';
-			$result['kinerja'] = 'Kurang Baik';
-		}else if($nilaiIKM > 62.5 && $nilaiIKM <= 81.25){
-			$result['mutu'] = 'B';
-			$result['kinerja'] = 'Baik';
-		}else if($nilaiIKM > 81.25 && $nilaiIKM <= 100){
-			$result['mutu'] = 'A';
-			$result['kinerja'] = 'Sangat Baik';
+		if(!empty($nilaiIKM)){
+			$nilaiIKM = $nilaiIKM * 25;
+			
+			if($nilaiIKM >= 25 && $nilaiIKM <= 43.75){
+				$result['mutu'] = 'D';
+				$result['kinerja'] = 'Tidak Baik';
+			}else if($nilaiIKM > 43.75 && $nilaiIKM <= 62.5){
+				$result['mutu'] = 'C';
+				$result['kinerja'] = 'Kurang Baik';
+			}else if($nilaiIKM > 62.5 && $nilaiIKM <= 81.25){
+				$result['mutu'] = 'B';
+				$result['kinerja'] = 'Baik';
+			}else if($nilaiIKM > 81.25 && $nilaiIKM <= 100){
+				$result['mutu'] = 'A';
+				$result['kinerja'] = 'Sangat Baik';
+			}
+			$result['konversi'] = $nilaiIKM;
+			
+			return $result;
 		}
-		$result['konversi'] = $nilaiIKM;
-		
-		return $result;
 	}
 	
 	public function getGraphData(){
