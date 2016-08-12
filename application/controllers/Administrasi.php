@@ -12,7 +12,7 @@ class Administrasi extends CI_Controller{
 		if(!$this->load->cek_sesi()) exit;
 	
 		$data['pageTitle'] = "Dashboard Administrator";
-		$data['activePage'] = "dashboard";
+		$data['activePage'] = "dashboard";		
 		
 		$this->load->model('mkuisioner');
 		$data['simpulan'] = $this->mkuisioner->simpulanIKM();

@@ -4,7 +4,7 @@
 function hapus_kuisioner() {
 	var ctn = confirm("Anda Yakin Akan Menghapus Semua Kuisioner?");
 	if (!ctn) return false;
-	$.post(Globals.site_url+"/ajax/delete_kuisioner",
+	$.post(Globals.site_url+"ajax/delete_kuisioner",
 		{
 			
 		},
@@ -22,7 +22,7 @@ function hapus_kuisioner() {
 $(document).ready(function(){
 	
 	$.ajax({
-		url: Globals.site_url + "ajax/grafik_kuisioner",
+		url: Globals.site_url + "ajax/grafik_kuisioner/",
 		method: "post",
 		dataType: 'json',
 		success: function(response){

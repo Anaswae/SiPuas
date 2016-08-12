@@ -3,9 +3,9 @@
 		<div class="panel panel-primary">
 			<div class="panel-body">
 				<span class="glyphicon glyphicon-thumbs-up glyphicon-align-left" aria-hidden="true"></span>
-			    Terima Kasih Atas Partisipasi Anda Dalam Pengisian Kuisioner SiPuas 
+			    Terima Kasih Atas Partisipasi Anda Dalam Pengisian Kuisioner SIMIKM 
 			</div>
-			<a href="<?php echo base_url("");?>">
+			<a href="<?php echo base_url("kuisioner");?>">
 			<button type="button" class="btn btn-default" aria-label="Left Align" style="margin-left: 10px;">
 			  <span class="glyphicon glyphicon-arrow-left glyphicon-align-left" aria-hidden="true"></span>
 			  Kembali
@@ -14,4 +14,4 @@
 		</div>
 	</div>
 </div>
-<?php header("Refresh: 3;url=".base_url(""));?>
+<?php header("Refresh: 3;url=".base_url("kuisioner"));?>

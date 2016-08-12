@@ -6,16 +6,18 @@
 			<h4 align="left">Selamat Datang <?php echo $this->session->adminName." (".$this->session->sessionEmail.")";?></h4>
 			<div class="row placeholders">
 				<?php if(!empty($simpulan)){?>
-				<h3 align="left">Grafik Kualitas Pelayanan</h3>
-					<div class="col-xs-12 col-sm-12 placeholder">
-						<canvas id="respondenChart" width="400" height="150"></canvas>
-					</div>
+				<div class="col-lg-6 placeholder"><h3 align="left">Grafik Kualitas Pelayanan</h3></div>
+				<div class="col-lg-6 placeholder" style="padding-top: 20px"><input id="range" name="range"></div>
+					
+				<div class="col-xs-12 col-sm-12 placeholder" id="chartContainer">
+					<canvas id="respondenChart" width="400" height="150"></canvas>
+				</div>
 				<?php } else{?>
 				<h3 align="left">Belum ada responden</h3>
 				<?php }?>
 				
-				<div class="col-xs-6 col-sm-6 placeholder">
-					<div class="panel panel-primary">
+				<div class="col-xs-6 col-sm-6 placeholder" id="simpulanContainer">
+					<div class="panel panel-primary" id="simpulan">
 						<div class="panel-heading">
 						    <h3 class="panel-title">Simpulan Kuisioner dari <?php echo $jumlahResponden;?> Responden</h3>
 						</div>

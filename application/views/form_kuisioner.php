@@ -209,7 +209,7 @@
 				<button class="btn btn-default" id="prev"><< Pertanyaan Sebelumnya</button>
 				<button class="btn btn-default" id="next">Pertanyaan Selanjutnya >></button>
 			</div>
-			&copy;SiPuas Powered By <a href="mailto:saptanto.sindu@gmail.com?Subject=SiPuas" target="_top">Ketampanan</a>
+			&copy;SIMIKM Powered By <a href="mailto:saptanto.sindu@gmail.com?Subject=SiPuas" target="_top">Ketampanan</a>
 		</div>
 	</div>
 </div>

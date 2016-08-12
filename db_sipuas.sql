@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 29, 2016 at 11:57 AM
+-- Generation Time: Aug 12, 2016 at 12:04 PM
 -- Server version: 5.6.24
 -- PHP Version: 5.6.8
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `smamardi_sia`
+-- Database: `db_sipuas`
 --
 
 -- --------------------------------------------------------
@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS `tbl_admin` (
 --
 
 INSERT INTO `tbl_admin` (`idAdmin`, `username`, `password`, `email`, `fullname`, `lastLogin`, `lastIp`) VALUES
-(1, 'administrator', '$2a$10$J.heQw8H7uFc0yPpBTs9C.TMh17IlQaewJWq3cCFcIEKOzYcFPsZ6', 'admin@sipuas.com', 'Administrator', '2016-02-29 11:39:13', '::1');
+(1, 'administrator', '$2a$10$J.heQw8H7uFc0yPpBTs9C.TMh17IlQaewJWq3cCFcIEKOzYcFPsZ6', 'admin@sipuas.com', 'Administrator', '2016-08-12 06:33:42', '::1');
 
 -- --------------------------------------------------------
 
@@ -69,7 +69,7 @@ CREATE TABLE IF NOT EXISTS `tbl_kuisioner` (
   `kepastianJadwal` smallint(6) NOT NULL,
   `kenyamanan` smallint(6) NOT NULL,
   `keamanan` smallint(6) NOT NULL,
-  `waktu_pengisian` datetime NOT NULL
+  `waktu_pengisian` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -77,10 +77,18 @@ CREATE TABLE IF NOT EXISTS `tbl_kuisioner` (
 --
 
 INSERT INTO `tbl_kuisioner` (`nomer`, `umur`, `jenkel`, `pendidikan`, `pekerjaan`, `prosedur`, `persyaratan`, `kejelasan`, `kedisiplinan`, `tanggungjawab`, `kemampuan`, `kecepatan`, `keadilan`, `kesopanan`, `kewajaranBiaya`, `kepastianBiaya`, `kepastianJadwal`, `kenyamanan`, `keamanan`, `waktu_pengisian`) VALUES
-('RSP-0001', 21, 'Laki-Laki', 'S1', 'Wiraswasta', 1, 2, 2, 4, 2, 1, 2, 3, 1, 3, 1, 4, 3, 3, '2016-02-29 10:27:53'),
-('RSP-0002', 21, 'Laki-Laki', 'Diploma', 'Pegawai Swasta', 1, 2, 1, 2, 1, 2, 1, 1, 3, 3, 3, 3, 3, 4, '2016-02-29 10:36:27'),
-('RSP-0003', 21, 'Laki-Laki', 'Diploma', 'Pelajar/Mahasiswa', 1, 2, 3, 2, 2, 2, 2, 3, 3, 1, 3, 3, 3, 1, '2016-02-29 11:48:04'),
-('RSP-0004', 21, 'Laki-Laki', 'S2 Keatas', 'Pegawai Swasta', 1, 2, 2, 1, 4, 2, 3, 3, 3, 3, 1, 3, 3, 2, '2016-02-29 11:53:18');
+('RSP-0001', 21, 'Laki-Laki', 'S1', 'Wiraswasta', 1, 2, 2, 4, 2, 1, 2, 3, 1, 3, 1, 4, 3, 3, '2016-02-29'),
+('RSP-0002', 21, 'Laki-Laki', 'Diploma', 'Pegawai Swasta', 1, 2, 1, 2, 1, 2, 1, 1, 3, 3, 3, 3, 3, 4, '2016-02-29'),
+('RSP-0003', 21, 'Laki-Laki', 'Diploma', 'Pelajar/Mahasiswa', 1, 2, 3, 2, 2, 2, 2, 3, 3, 1, 3, 3, 3, 1, '2016-02-29'),
+('RSP-0004', 21, 'Laki-Laki', 'S2 Keatas', 'Pegawai Swasta', 1, 2, 2, 1, 4, 2, 3, 3, 3, 3, 1, 3, 3, 2, '2016-02-29'),
+('RSP-0005', 21, 'Perempuan', 'SMP', 'Pelajar/Mahasiswa', 4, 2, 2, 2, 1, 2, 2, 1, 3, 3, 4, 3, 3, 3, '2016-03-02'),
+('RSP-0006', 21, 'Laki-Laki', 'SD Kebawah', 'PNS/TNI/Polri', 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, '2016-05-08'),
+('RSP-0007', 21, 'Laki-Laki', 'SD Kebawah', 'PNS/TNI/Polri', 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, '2016-05-08'),
+('RSP-0008', 21, 'Laki-Laki', 'SMA', 'Pelajar/Mahasiswa', 1, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, '2016-05-16'),
+('RSP-0009', 21, 'Laki-Laki', 'SMA', 'Pegawai Swasta', 4, 2, 3, 3, 3, 3, 2, 1, 3, 3, 1, 3, 3, 3, '2016-05-23'),
+('RSP-0010', 21, 'Laki-Laki', 'SMP', 'Wiraswasta', 4, 3, 2, 4, 3, 3, 4, 2, 4, 3, 4, 1, 3, 4, '2016-05-23'),
+('RSP-0011', 21, 'Laki-Laki', 'Diploma', 'Pegawai Swasta', 1, 3, 3, 1, 3, 3, 3, 2, 3, 1, 3, 3, 3, 2, '2016-08-01'),
+('RSP-0012', 12, 'Laki-Laki', 'SD Kebawah', 'PNS/TNI/Polri', 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, '2016-08-11');
 
 --
 -- Indexes for dumped tables

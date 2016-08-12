@@ -2328,7 +2328,7 @@ input[type="search"] {
 }
 input[type="radio"],
 input[type="checkbox"] {
-  margin: 4px 0 0;
+  margin: 20px 0 0;
   margin-top: 1px \9;
   line-height: normal;
 }
@@ -2463,7 +2463,7 @@ _:-ms-fullscreen.input-lg,
 .form-responden{
 	max-width: 800px;
 	padding: 15px;
-	margin: 0px auto;
+	margin: 100px auto;
 	border: 2px solid #a1a1a1;
 	background: #ffffff;
 	border-radius: 25px;
@@ -2479,7 +2479,7 @@ div.form-responden{
 .form-kuisioner{	
 	max-width: 1024px;
 	padding: 15px;
-	margin: 0px auto;
+	margin: 100px auto;
 	border: 2px solid #a1a1a1;
 	background: #ffffff;
 	border-radius: 25px;

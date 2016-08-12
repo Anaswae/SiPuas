@@ -18,6 +18,14 @@
 <?php if($activePage == "dashboard") {?>
 <script type='text/javascript'
 	src="<?php echo base_url('/assets/js/chartInit.js');?>"></script>
+<script type='text/javascript'
+	src="<?php echo base_url('/assets/js/dateRangeInit.js');?>"></script>
+<script type='text/javascript'
+	src="<?php echo base_url('/assets/js/jquery-ui.min.js');?>"></script>
+<script type='text/javascript'
+	src="<?php echo base_url('/assets/js/moment.js');?>"></script>
+<script type='text/javascript'
+	src="<?php echo base_url('/assets/js/jquery.comiseo.daterangepicker.js');?>"></script>
 <?php }?>
 
 <?php if($activePage == "respon") {?>

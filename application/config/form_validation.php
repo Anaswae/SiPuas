@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 $config = array(
-		'Kuisioner/index' => array(
+		'kuisioner/index' => array(
 				array(
 						'field' => 'umur',
 						'label' => 'Umur',
@@ -26,7 +26,7 @@ $config = array(
 						)
 				)
 		),
-		'Kuisioner/form' => array(
+		'kuisioner/form' => array(
 				array(
 						'field' => 'umur',
 						'label' => 'Umur',

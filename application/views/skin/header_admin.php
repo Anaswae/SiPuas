@@ -19,6 +19,12 @@
 <!-- Style for DataTables -->
 <link href="<?php echo base_url("/assets/css/dataTables.bootstrap.css");?>" rel="stylesheet">
 
+<!-- Style for JQuery-UI -->
+<link href="<?php echo base_url("/assets/css/jquery-ui.min.css");?>" rel="stylesheet">
+
+<!-- Style for Daterangepicker -->
+<link href="<?php echo base_url("/assets/css/jquery.comiseo.daterangepicker.css");?>" rel="stylesheet">
+
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -50,7 +56,7 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">SiPuas</a>
+				<a class="navbar-brand" href="<?php echo site_url();?>">SIMIKM</a>
 			</div>
 			<div id="navbar" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav navbar-right">

@@ -1,5 +1,5 @@
 <?php
-class MKuisioner extends CI_Model{
+class Mkuisioner extends CI_Model{
 
 	public function __construct(){
 		// Call the CI_Model constructor
@@ -73,8 +73,15 @@ class MKuisioner extends CI_Model{
 		}
 	}
 	
-	public function getDataKuisioner(){
-		$query = $this->db->get('tbl_kuisioner');
+	public function getDataKuisioner($dateRange = null){
+		if($dateRange == null)
+			$query = $this->db->get('tbl_kuisioner');
+		else{
+			$start = substr($dateRange, 0, strpos($dateRange, '_')+1);
+			$end = substr($dateRange, strpos($dateRange, '_')+1);
+			$query = $this->db->query("SELECT * FROM `tbl_kuisioner` WHERE waktu_pengisian between '$start' and '$end'");
+		} 
+			
 		$indeks = 0;
 		$result = array();
 		
@@ -85,14 +92,14 @@ class MKuisioner extends CI_Model{
 		return $result;
 	}
 	
-	public function getJumlahResponden(){
-		$listKuisioner = $this->getDataKuisioner();
+	public function getJumlahResponden($dateRange = null){
+		$listKuisioner = $this->getDataKuisioner($dateRange);
 		
 		return $jumlahResponden = count($listKuisioner);
 	}
 	
-	public function hitungNilaiUnsurPelayanan(){
-		$listKuisioner = $this->getDataKuisioner();
+	public function hitungNilaiUnsurPelayanan($dateRange = null){
+		$listKuisioner = $this->getDataKuisioner($dateRange);
 		
 		if(!empty($listKuisioner)){
 			$hasil = array(
@@ -130,8 +137,8 @@ class MKuisioner extends CI_Model{
 		}
 	}
 	
-	public function hitungNilaiIKM() {
-		$nilaiUnsurPelayanan = $this->hitungNilaiUnsurPelayanan();
+	public function hitungNilaiIKM($dateRange = null) {
+		$nilaiUnsurPelayanan = $this->hitungNilaiUnsurPelayanan($dateRange);
 		
 		if(!empty($nilaiUnsurPelayanan)){
 			$result = 0;
@@ -144,8 +151,8 @@ class MKuisioner extends CI_Model{
 		}
 	}
 	
-	public function simpulanIKM(){
-		$nilaiIKM = $this->hitungNilaiIKM();
+	public function simpulanIKM($dateRange = null){
+		$nilaiIKM = $this->hitungNilaiIKM($dateRange);
 		if(!empty($nilaiIKM)){
 			$nilaiIKM = $nilaiIKM * 25;
 			
@@ -168,28 +175,31 @@ class MKuisioner extends CI_Model{
 		}
 	}
 	
-	public function getGraphData(){
-		$nilaiUnsurPelayanan = $this->hitungNilaiUnsurPelayanan();
+	public function getGraphData($dateRange = null){
+		$nilaiUnsurPelayanan = $this->hitungNilaiUnsurPelayanan($dateRange);
 		$result = array();
-		$konversi = array(
-				'prosedur' => 'Prosedur Pelayanan',
-				'persyaratan' => 'Persyaratan Pelayanan',
-				'kejelasan' => 'Kejelasan Petugas Pelayanan',
-				'kedisiplinan' => 'Kedisiplinan Petugas Pelayanan',
-				'tanggungjawab' => 'Tanggung Jawab Petugas Pelayanan',
-				'kemampuan' => 'Kemampuan Petugas Pelayanan',
-				'kecepatan' => 'Kecepatan Pelayanan',
-				'keadilan' => 'Keadilan Mendapatkan Pelayanan',
-				'kesopanan' => 'Kesopanan dan Keramahan Petugas',
-				'kewajaranBiaya' => 'Kewajaran Biaya Pelayanan',
-				'kepastianBiaya' => 'Kepastian Biaya Pelayanan',
-				'kepastianJadwal' => 'Kepastian Jadwal Pelayanan',
-				'kenyamanan' => 'Kenyamanan Lingkungan',
-				'keamanan' => 'Keamanan Pelayanan'
-		);
 		
-		foreach ($nilaiUnsurPelayanan as $unsurPelayanan => $nilai){
-			$result[$konversi[$unsurPelayanan]] = $nilai;
+		if (!empty($nilaiUnsurPelayanan)){
+			$konversi = array(
+					'prosedur' => 'Prosedur Pelayanan',
+					'persyaratan' => 'Persyaratan Pelayanan',
+					'kejelasan' => 'Kejelasan Petugas Pelayanan',
+					'kedisiplinan' => 'Kedisiplinan Petugas Pelayanan',
+					'tanggungjawab' => 'Tanggung Jawab Petugas Pelayanan',
+					'kemampuan' => 'Kemampuan Petugas Pelayanan',
+					'kecepatan' => 'Kecepatan Pelayanan',
+					'keadilan' => 'Keadilan Mendapatkan Pelayanan',
+					'kesopanan' => 'Kesopanan dan Keramahan Petugas',
+					'kewajaranBiaya' => 'Kewajaran Biaya Pelayanan',
+					'kepastianBiaya' => 'Kepastian Biaya Pelayanan',
+					'kepastianJadwal' => 'Kepastian Jadwal Pelayanan',
+					'kenyamanan' => 'Kenyamanan Lingkungan',
+					'keamanan' => 'Keamanan Pelayanan'
+			);
+			
+			foreach ($nilaiUnsurPelayanan as $unsurPelayanan => $nilai){
+				$result[$konversi[$unsurPelayanan]] = $nilai;
+			}
 		}
 		
 		return $result;
