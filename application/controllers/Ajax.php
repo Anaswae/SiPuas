@@ -105,4 +105,44 @@ class Ajax extends CI_Controller{
 		} else 
 			echo json_encode("kosong");
 	}
+	
+	public function dataKuisioner($dateRange = null){
+		if (!$this->_check_session()) exit;
+		
+		$labels = array();
+		$data = array();
+		$index = 0;
+		$this->load->model('mkuisioner');
+		$daftarKuisioner = $this->mkuisioner->getDataKuisioner($dateRange);
+		
+		if (!empty($daftarKuisioner)){
+			foreach ($daftarKuisioner as $namaPelayanan => $nilai){
+				$data[$index] = array();
+				$data[$index][0] = $nilai['nomer'];
+				$data[$index][1] = $nilai['umur'];
+				$data[$index][2] = $nilai['jenkel'];
+				$data[$index][3] = $nilai['pendidikan'];
+				$data[$index][4] = $nilai['pekerjaan'];
+				$data[$index][5] = $nilai['prosedur'];
+				$data[$index][6] = $nilai['persyaratan'];
+				$data[$index][7] = $nilai['kejelasan'];
+				$data[$index][8] = $nilai['kedisiplinan'];
+				$data[$index][9] = $nilai['tanggungjawab'];
+				$data[$index][10] = $nilai['kemampuan'];
+				$data[$index][11] = $nilai['kecepatan'];
+				$data[$index][12] = $nilai['keadilan'];
+				$data[$index][13] = $nilai['kesopanan'];
+				$data[$index][14] = $nilai['kewajaranBiaya'];
+				$data[$index][15] = $nilai['kepastianBiaya'];
+				$data[$index][16] = $nilai['kepastianJadwal'];
+				$data[$index][17] = $nilai['kenyamanan'];
+				$data[$index][18] = $nilai['keamanan'];
+				
+				$index = $index + 1;
+			}
+
+			echo json_encode(array('data' => $data));
+		} else{
+			echo json_encode(array('data' => array()));}
+	}
 }

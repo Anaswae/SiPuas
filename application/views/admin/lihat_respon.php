@@ -3,10 +3,11 @@
 		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 			<h3 class="page-header" style="border-bottom: solid 1px blue">Lihat Respon</h3>
 			
-			<div style="margin-right:1px; padding-bottom:45px; margin-top:-20px">
-				<a href="<?php echo site_url("administrasi/export_respon") ?>" class="btn btn-primary pull-right">Export ke Excel</a>
+			<div class="col-lg-6 placeholder" style="padding-top: 20px; margin-top: -20px; margin-left: 360px;">
+				<input id="rangeDataKuisioner" name="rangeDataKuisioner" /></div>
+			<div style="margin-right:1px; padding-bottom:45px; margin-top:-20px;">
+				<a href="<?php echo site_url("administrasi/export_respon") ?>" class="btn btn-primary pull-right" id="btn_export">Export ke Excel</a>
 			</div>
-			 
 			<div class="row">
 				<table class="table table-striped table-bordered table-hover" id="dataTables-list">
                     <thead>
@@ -61,7 +62,17 @@
 						?>
                     </tbody>
                 </table>
-			</div>	
+			</div>
+					
 		</div>
 	</div>
 </div>
+
+<script>
+	function updateTabel(response){
+		var datatable1 = $('#dataTables-list').dataTable().api();
+						datatable1.clear();
+						datatable1.rows.add(response.data);
+						datatable1.columns.adjust().draw();
+	}
+</script>

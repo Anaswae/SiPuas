@@ -30,6 +30,14 @@
 
 <?php if($activePage == "respon") {?>
 <script type='text/javascript'
+	src="<?php echo base_url('/assets/js/jquery-ui.min.js');?>"></script>
+<script type='text/javascript'
+	src="<?php echo base_url('/assets/js/dateRangeInit.js');?>"></script>
+<script type='text/javascript'
+	src="<?php echo base_url('/assets/js/moment.js');?>"></script>
+<script type='text/javascript'
+	src="<?php echo base_url('/assets/js/jquery.comiseo.daterangepicker.js');?>"></script>
+<script type='text/javascript'
 	src="<?php echo base_url('/assets/js/dataTablesInit.js');?>"></script>
 <?php }?>
 <?php }?>

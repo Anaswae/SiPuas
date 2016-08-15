@@ -161,4 +161,75 @@ $(document).ready(function(){
         	});
         }
     });
+	
+	$("#rangeDataKuisioner").daterangepicker({
+        datepickerOptions : {
+            numberOfMonths : 2,
+            dayNamesMin : ["Min", "Sen", "Sel", "Rab", "Kam", "Jum", "Sab"]
+        },
+        initialText: 'Pilih Range Tanggal...',
+        presetRanges: [{
+            text: 'Seminggu ini',
+            dateStart: function() { return moment().startOf('week') },
+            dateEnd: function() { return moment().endOf('week') }
+        }, {
+            text: 'Bulan ini',
+            dateStart: function() { return moment().startOf('month') },
+            dateEnd: function() { return moment().endOf('month') }
+        }, {
+            text: 'Bulan lalu',
+            dateStart: function() { return moment().startOf('month').subtract(1, 'months') },
+            dateEnd: function() { return moment().startOf('month').subtract(1, 'days') }
+        }, {
+            text: 'Semester I',
+            dateStart: function() { return moment().startOf('year') },
+            dateEnd: function() { return moment().startOf('year').add(30, "days").add(5, 'months') }
+        },
+        {
+            text: 'Semester II',
+            dateStart: function() { return moment().startOf('year').add(6, 'months') },
+            dateEnd: function() { return moment().endOf('year') }
+        },
+        {
+            text: 'Setahun ini',
+            dateStart: function() { return moment().startOf('year') },
+            dateEnd: function() { return moment().endOf('year') }
+        },
+        {
+            text: 'Setahun lalu',
+            dateStart: function() { return moment().startOf('year').subtract(1, 'year') },
+            dateEnd: function() { return moment().startOf('year').subtract(1, 'days') }
+        }],
+        dateFormat: 'dd-mm-yy',
+        altFormat: 'yy-mm-dd',
+        applyButtonText: 'Terapkan',
+        clearButtonText: 'Hapus',
+        cancelButtonText: 'Batalkan',
+        change: function(event, data) 
+		{ 
+			
+        	var date = $("#rangeDataKuisioner").daterangepicker("getRange");
+        	
+        	var dateString=date['start'];
+        	dateString=new Date(dateString);
+        	var month = dateString.getMonth() + 1;
+        	var startDate = dateString.getFullYear() + "-" + month + "-" + dateString.getDate();
+        	
+        	dateString=date['end'];
+        	dateString=new Date(dateString);
+        	month = dateString.getMonth() + 1;
+        	var endDate = dateString.getFullYear() + "-" + month + "-" + dateString.getDate();
+        	
+        	var dateRange = startDate + "_" + endDate;
+        	$("#btn_export").attr("href",Globals.site_url + "administrasi/export_respon/" + dateRange);
+        	$.ajax({
+        		url: Globals.site_url + "ajax/dataKuisioner/" + dateRange,
+        		method: "post",
+        		dataType: 'json',
+        		success: function(response){
+						updateTabel(response);
+        		}
+        	});
+        },
+    });
 });

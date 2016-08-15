@@ -30,14 +30,14 @@ class Administrasi extends CI_Controller{
 		$this->load->template_admin("lihat_respon", $data, true);
 	}
 	
-	public function export_respon(){
+	public function export_respon($dateRange = null){
 		if(!$this->load->cek_sesi()) exit;
 		$this->load->model('mkuisioner');
 		$this->load->helper('export_xlsx');
 	
-		$data['listRespon'] = $this->mkuisioner->getDataKuisioner();
-		$data['simpulan'] = $this->mkuisioner->simpulanIKM();
-		$data['hasil'] = $this->mkuisioner->hitungNilaiUnsurPelayanan();
+		$data['listRespon'] = $this->mkuisioner->getDataKuisioner($dateRange);
+		$data['simpulan'] = $this->mkuisioner->simpulanIKM($dateRange);
+		$data['hasil'] = $this->mkuisioner->hitungNilaiUnsurPelayanan($dateRange);
 		do_export_xlsx($data['listRespon'], $data['simpulan'], $data['hasil']);
 	}
 	
