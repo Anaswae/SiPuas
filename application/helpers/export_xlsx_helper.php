@@ -1,5 +1,5 @@
 <?php
-function do_export_xlsx($listRespon, $simpulan, $hasil) {
+function do_export_xlsx($listRespon, $simpulan, $hasil, $tanggal) {
 	$CI =& get_instance();
 	
 	// load the excel library
@@ -92,10 +92,17 @@ function do_export_xlsx($listRespon, $simpulan, $hasil) {
 		// Judul worksheet pada bagian atas
 		$worksheetReport->mergeCellsByColumnAndRow(
 				IDX_COL_HOME, IDX_ROW_START,
-				IDX_COL_HOME+TABLE_COLS-1, IDX_ROW_START+1)
+				IDX_COL_HOME+TABLE_COLS-1, IDX_ROW_START)
 				->setCellValueByColumnAndRow(IDX_COL_HOME, IDX_ROW_START, "Data Hasil Responden Kuisioner Kepuasan Masyarakat");
 		
+		$worksheetReport->mergeCellsByColumnAndRow(
+				IDX_COL_HOME, IDX_ROW_START+1,
+				IDX_COL_HOME+TABLE_COLS-1, IDX_ROW_START+1)
+				->setCellValueByColumnAndRow(IDX_COL_HOME, IDX_ROW_START+1, "(Tanggal Rekapitulasi: ".$tanggal.")");
+		
 		$worksheetReport->getStyleByColumnAndRow(IDX_COL_HOME, IDX_ROW_START)
+			->applyFromArray($styleHeader); // Set style
+		$worksheetReport->getStyleByColumnAndRow(IDX_COL_HOME, IDX_ROW_START+1)
 			->applyFromArray($styleHeader); // Set style
 		$worksheetReport->getStyleByColumnAndRow(IDX_COL_HOME, IDX_ROW_START)
 			->getFont()->setSize(18);

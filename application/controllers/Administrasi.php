@@ -38,7 +38,8 @@ class Administrasi extends CI_Controller{
 		$data['listRespon'] = $this->mkuisioner->getDataKuisioner($dateRange);
 		$data['simpulan'] = $this->mkuisioner->simpulanIKM($dateRange);
 		$data['hasil'] = $this->mkuisioner->hitungNilaiUnsurPelayanan($dateRange);
-		do_export_xlsx($data['listRespon'], $data['simpulan'], $data['hasil']);
+		$tanggal = $dateRange;
+		do_export_xlsx($data['listRespon'], $data['simpulan'], $data['hasil'], $tanggal);
 	}
 	
 	/*tambahan buat datatables
