@@ -24,7 +24,7 @@ class Administrasi extends CI_Controller{
 		if(!$this->load->cek_sesi()) exit;
 		$this->load->model('mkuisioner');
 	
-		$data['listRespon'] = $this->mkuisioner->getDataKuisioner();
+		$data['listRespon'] = $this->mkuisioner->getDataTable();
 		$data['pageTitle'] = "Dashboard Administrator";
 		$data['activePage'] = "respon";
 		$this->load->template_admin("lihat_respon", $data, true);
@@ -38,7 +38,14 @@ class Administrasi extends CI_Controller{
 		$data['listRespon'] = $this->mkuisioner->getDataKuisioner($dateRange);
 		$data['simpulan'] = $this->mkuisioner->simpulanIKM($dateRange);
 		$data['hasil'] = $this->mkuisioner->hitungNilaiUnsurPelayanan($dateRange);
-		$tanggal = $dateRange;
+		if ($dateRange != null){
+			$date = explode('_', $dateRange);
+			$date[0] = date("d-m-Y", strtotime($date[0]));
+			$date[1] = date("d-m-Y", strtotime($date[1]));
+			$tanggal = $date[0] . ' Sampai Dengan ' . $date[1];
+		} else {
+			$tanggal = null;
+		}
 		do_export_xlsx($data['listRespon'], $data['simpulan'], $data['hasil'], $tanggal);
 	}
 	

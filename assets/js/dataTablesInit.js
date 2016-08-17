@@ -1,6 +1,24 @@
 /**
  * 
  */
+function hapus_kuisioner(id) {
+	var ctn = confirm("Anda Yakin Akan Menghapus Kuisioner Nomer " + id + " ?");
+	if (!ctn) return false;
+	$.post(Globals.site_url+"ajax/delete_kuisioner",
+		{
+			nomer: id
+		},
+		function(data,status){
+			if(data === "ok"){
+				alert("Kuisioner berhasil dihapus.");
+				location.reload(true);
+			}else{
+				alert(data);
+			}
+		});
+	return false;
+}
+
 $(document).ready(function(){
 	$('#dataTables-list').DataTable({
 		language: {

@@ -191,7 +191,7 @@
 							</tr>
 						</table>
 				</div>
-				<br><br>
+				<br <br>
 				<div>
 					<button class="btn btn-lg btn-warning btn-block btn-custom" type="submit"
 							id="submit" name="submit" style="width: 120px;">Kirimkan</button><br>
@@ -205,21 +205,66 @@
 					}
 				?>
 			</form>
+			
 			<div>
 				<button class="btn btn-default" id="prev"><< Pertanyaan Sebelumnya</button>
 				<button class="btn btn-default" id="next">Pertanyaan Selanjutnya >></button>
+			</div>
+			<br>
+			<div id="terlewat" class="alert alert-danger" role="alert">
 			</div>
 			&copy;SIMIKM Powered By <a href="mailto:saptanto.sindu@gmail.com?Subject=SiPuas" target="_top">Ketampanan</a>
 		</div>
 	</div>
 </div>
 
+
 <script>
 $(document).ready(function(){
 	$("#prev").hide();
+	$("#terlewat").hide();
 	$("#submit").hide();
 });
-
+var soal = 1;
+var checking = function(){
+	var choices = $('input[type="radio"]:not(:checked)');
+	var count = 1;
+	var unchecked = [];
+	
+	for(var i = 0; i < choices.length-1; i++){
+		if(choices[i].name == choices[i+1].name){
+			count = count+1;
+			if(count == 4){
+				unchecked.push(choices[i].name);
+			}
+		}else{
+			count = 1;	
+		}
+	}
+	
+	var konversi = [];
+	konversi['prosedur'] = 1;
+	konversi['persyaratan'] = 2;
+	konversi['kejelasan'] = 3;
+	konversi['kedisiplinan'] = 4;
+	konversi['tanggungjawab'] = 5;
+	konversi['kemampuan'] = 6;
+	konversi['kecepatan'] = 7;
+	konversi['keadilan'] = 8;
+	konversi['kesopanan'] = 9;
+	konversi['kewajaranBiaya'] = 10;
+	konversi['kepastianBiaya'] = 11;
+	konversi['kepastianJadwal'] = 12;
+	konversi['kenyamanan'] = 13;
+	konversi['keamanan'] = 14;
+	var out = '<p>Pertanyaan yang belum dijawab : ';
+    for (var i in unchecked) {
+        out += "Pertanyaan ke-" + konversi[unchecked[i]] + " ";
+    }
+    out += "</p>";
+    $("#terlewat").html(out);
+    $("#terlewat").show();
+};
 var submitVar = function submitBut(){
 	if($('input[type="radio"]:checked').length < $(".page").length)
 		$("#submit").hide();
@@ -233,6 +278,8 @@ var sebelumnya = function(){
     	$(".page.active").removeClass("active").prev().addClass("active");
     	$("#next").show();
     }
+    soal--;
+    $("#terlewat").hide();
     submitVar();
 };
 var setelahnya = function(){
@@ -243,8 +290,14 @@ var setelahnya = function(){
     	$(".page.active").removeClass("active").next().addClass("active");
     	$("#prev").show();
     }
+    soal++;
+    if(soal == 14 && $('input[name=keamanan]:checked').length == 1){
+    	checking();
+    }
     submitVar();
 };
+
+$("input[name=keamanan]:radio").change(checking);
 
 $("#prev").click(sebelumnya);
 $("#next").click(setelahnya);

@@ -31,6 +31,7 @@
                             <th class="title-center" style="font-size:1em; text-align:center;">Kepastian Jadwal</th>
                             <th class="title-center" style="font-size:1em; text-align:center;">Kenyamanan</th>
                             <th class="title-center" style="font-size:1em; text-align:center;">Keamanan</th>
+                            <th class="title-center" style="font-size:1em; text-align:center;">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -57,6 +58,7 @@
 										<td>'.$item['kepastianJadwal'].'</td>
 										<td>'.$item['kenyamanan'].'</td>
 										<td>'.$item['keamanan'].'</td>
+										<td>'.$item['aksi'].'</td>
 								</tr>';
 							}
 						?>

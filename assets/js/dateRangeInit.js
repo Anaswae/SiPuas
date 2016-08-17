@@ -231,5 +231,18 @@ $(document).ready(function(){
         		}
         	});
         },
+        clear: function(event, data) 
+		{ 
+			
+        	$("#btn_export").attr("href",Globals.site_url + "administrasi/export_respon/");
+        	$.ajax({
+        		url: Globals.site_url + "ajax/dataKuisioner/",
+        		method: "post",
+        		dataType: 'json',
+        		success: function(response){
+						updateTabel(response);
+        		}
+        	});
+        }
     });
 });

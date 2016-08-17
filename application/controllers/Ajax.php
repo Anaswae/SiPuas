@@ -25,7 +25,8 @@ class Ajax extends CI_Controller{
 		if (!$this->_check_session()) exit;
 		
 		$this->load->model('mkuisioner');
-		echo $this->mkuisioner->hapusDataKuisioner();
+		$id = $this->input->post('nomer');
+		echo $this->mkuisioner->hapusDataKuisioner($id);
 	}
 	
 	public function update_simpulan($dateRange = null){
@@ -113,7 +114,7 @@ class Ajax extends CI_Controller{
 		$data = array();
 		$index = 0;
 		$this->load->model('mkuisioner');
-		$daftarKuisioner = $this->mkuisioner->getDataKuisioner($dateRange);
+		$daftarKuisioner = $this->mkuisioner->getDataTable($dateRange);
 		
 		if (!empty($daftarKuisioner)){
 			foreach ($daftarKuisioner as $namaPelayanan => $nilai){
@@ -137,6 +138,7 @@ class Ajax extends CI_Controller{
 				$data[$index][16] = $nilai['kepastianJadwal'];
 				$data[$index][17] = $nilai['kenyamanan'];
 				$data[$index][18] = $nilai['keamanan'];
+				$data[$index][19] = $nilai['aksi'];
 				
 				$index = $index + 1;
 			}

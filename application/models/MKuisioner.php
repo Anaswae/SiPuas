@@ -6,9 +6,16 @@ class Mkuisioner extends CI_Model{
 		parent::__construct();
 	}
 	
-	public function hapusDataKuisioner(){
-		if($this->db->empty_table('tbl_kuisioner'))
-			return "ok";
+	public function hapusDataKuisioner($id = null){
+		if($id == null){
+			if($this->db->empty_table('tbl_kuisioner'))
+				return "ok";
+		} else {
+			$this->db->delete('tbl_kuisioner', array('nomer'=>$id));
+			if($this->db->affected_rows() != 0){
+				return "ok";
+			}else return $this->db->error;
+		}
 	}
 	
 	public function getNomerResponden(){
@@ -86,6 +93,26 @@ class Mkuisioner extends CI_Model{
 		$result = array();
 		
 		foreach ($query->result_array() as $row){
+			$result[$indeks++] = $row;
+		}
+		
+		return $result;
+	}
+	
+	public function getDataTable($dateRange = null){
+		if($dateRange == null)
+			$query = $this->db->get('tbl_kuisioner');
+		else{
+			$start = substr($dateRange, 0, strpos($dateRange, '_')+1);
+			$end = substr($dateRange, strpos($dateRange, '_')+1);
+			$query = $this->db->query("SELECT * FROM `tbl_kuisioner` WHERE waktu_pengisian between '$start' and '$end'");
+		} 
+			
+		$indeks = 0;
+		$result = array();
+		
+		foreach ($query->result_array() as $row){
+			$row['aksi'] = "<a href='#' onclick=\"return hapus_kuisioner('".$row['nomer']."');\"><button type='button' class='btn btn-danger'><span class='glyphicon glyphicon-remove' aria-hidden='true'></span> Hapus</button></a>";
 			$result[$indeks++] = $row;
 		}
 		
