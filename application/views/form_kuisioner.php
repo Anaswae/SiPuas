@@ -242,28 +242,30 @@ var checking = function(){
 		}
 	}
 	
-	var konversi = [];
-	konversi['prosedur'] = 1;
-	konversi['persyaratan'] = 2;
-	konversi['kejelasan'] = 3;
-	konversi['kedisiplinan'] = 4;
-	konversi['tanggungjawab'] = 5;
-	konversi['kemampuan'] = 6;
-	konversi['kecepatan'] = 7;
-	konversi['keadilan'] = 8;
-	konversi['kesopanan'] = 9;
-	konversi['kewajaranBiaya'] = 10;
-	konversi['kepastianBiaya'] = 11;
-	konversi['kepastianJadwal'] = 12;
-	konversi['kenyamanan'] = 13;
-	konversi['keamanan'] = 14;
-	var out = '<p>Jawab terlebih dahulu semua pertanyaan untuk mengirimkan kuisioner.</p><p>Pertanyaan yang belum dijawab : ';
-    for (var i in unchecked) {
-        out += "Pertanyaan ke-" + konversi[unchecked[i]] + " ";
-    }
-    out += "</p>";
-    $("#terlewat").html(out);
-    $("#terlewat").show();
+	if(unchecked.length != 0){
+		var konversi = [];
+		konversi['prosedur'] = 1;
+		konversi['persyaratan'] = 2;
+		konversi['kejelasan'] = 3;
+		konversi['kedisiplinan'] = 4;
+		konversi['tanggungjawab'] = 5;
+		konversi['kemampuan'] = 6;
+		konversi['kecepatan'] = 7;
+		konversi['keadilan'] = 8;
+		konversi['kesopanan'] = 9;
+		konversi['kewajaranBiaya'] = 10;
+		konversi['kepastianBiaya'] = 11;
+		konversi['kepastianJadwal'] = 12;
+		konversi['kenyamanan'] = 13;
+		konversi['keamanan'] = 14;
+		var out = '<p>Jawab terlebih dahulu semua pertanyaan untuk mengirimkan kuisioner.</p><p>Pertanyaan yang belum dijawab : ';
+	    for (var i in unchecked) {
+	        out += "Pertanyaan ke-" + konversi[unchecked[i]] + " ";
+	    }
+	    out += "</p>";
+	    $("#terlewat").html(out);
+	    $("#terlewat").show();
+	}
 };
 var submitVar = function submitBut(){
 	if($('input[type="radio"]:checked').length < $(".page").length)
