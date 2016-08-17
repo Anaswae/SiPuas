@@ -257,7 +257,7 @@ var checking = function(){
 	konversi['kepastianJadwal'] = 12;
 	konversi['kenyamanan'] = 13;
 	konversi['keamanan'] = 14;
-	var out = '<p>Pertanyaan yang belum dijawab : ';
+	var out = '<p>Jawab terlebih dahulu semua pertanyaan untuk mengirimkan kuisioner.</p><p>Pertanyaan yang belum dijawab : ';
     for (var i in unchecked) {
         out += "Pertanyaan ke-" + konversi[unchecked[i]] + " ";
     }

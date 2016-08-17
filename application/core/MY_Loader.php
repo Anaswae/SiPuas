@@ -20,8 +20,12 @@ class MY_Loader extends CI_Loader {
 			return true;
 		}else{
 			$url = explode("/sipuas", $_SERVER['REQUEST_URI'], 2);
-			if ($enableRedirect)
-				header("Location:".site_url('Autentikasi/index/?url='.urlencode($url[1])));
+			if ($enableRedirect){
+				if(count($url) == 2 && $url[1] != "")
+					header("Location:".site_url('Autentikasi/index/?url='.urlencode($url[1])));
+				else
+					header("Location:".site_url('Autentikasi/index/'));
+			}
 		}
 		return false;
 	}
